@@ -13,7 +13,7 @@ export class ClienteComponent implements OnInit {
   public clientes: any;
   public clienteNuevo = {
     razon_social_cliente: 'Nombre',
-    ruc_cliente: 'nombre@gmail.com',
+    ruc_cliente: '12345',
   };
   public clienteForm: any;
 

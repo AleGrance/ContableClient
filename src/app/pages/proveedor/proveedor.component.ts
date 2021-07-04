@@ -13,7 +13,7 @@ export class ProveedorComponent implements OnInit {
   public proveedores: any;
   public proveedorNuevo = {
     nom_proveedor: 'Nombre',
-    ruc_proveedor: 'nombre@gmail.com',
+    ruc_proveedor: '12345',
     timbrado_proveedor: '12345',
   };
   public proveedorForm: any;

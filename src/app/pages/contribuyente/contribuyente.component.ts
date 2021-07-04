@@ -48,7 +48,8 @@ export class ContribuyenteComponent implements OnInit {
       ]),
       email: new FormControl(this.contribuyenteNuevo.email_contribuyente, [
         Validators.required,
-        Validators.minLength(5)
+        Validators.minLength(5),
+        Validators.email
       ])
     });
 
