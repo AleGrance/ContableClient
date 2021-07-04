@@ -10,6 +10,7 @@ import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { ContribuyenteComponent } from './pages/contribuyente/contribuyente.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
+import { CuentaComponent } from './pages/cuenta/cuenta.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReporteComponent } from './pages/reporte/reporte.component';
     ProveedorComponent,
     ClienteComponent,
     ContribuyenteComponent,
-    ReporteComponent
+    ReporteComponent,
+    CuentaComponent
   ],
   imports: [
     BrowserModule,

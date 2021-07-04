@@ -1,0 +1,118 @@
+<div class="card-deck">
+    <div class="card">
+
+        <div class="card-body">
+            <h5 class="card-title">Registrar cuenta madre</h5>
+            <form [formGroup]="cuentaForm" #formDir="ngForm">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre de la cuenta</label>
+                    <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                        aria-describedby="nombre" placeholder="Escriba el nombre de la cuenta" required>
+
+                    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                        <div *ngIf="nombre.errors?.required">
+                            Campo requerido.
+                        </div>
+                        <div *ngIf="nombre.errors?.minlength">
+                            Debe tener al menos 4 caraceres.
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="submit()"
+                    [disabled]="cuentaForm.invalid">Grabar</button>
+            </form>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+    <div class="card">
+
+        <div class="card-body">
+            <h5 class="card-title">Registrar cuenta hijo</h5>
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre de la cuenta</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Escriba el nombre de la cuenta">
+                </div>
+                <button type="submit" class="btn btn-primary">Grabar</button>
+            </form>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+    <div class="card">
+
+        <div class="card-body">
+            <h5 class="card-title">Registrar cuenta contable</h5>
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre de la cuenta</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Escriba el nombre de la cuenta">
+                </div>
+                <button type="submit" class="btn btn-primary">Grabar</button>
+            </form>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+</div>
+
+<!--List of cuentas-->
+
+<div class="card-deck">
+    <div class="card">
+
+        <div class="card-body">
+            <div class="list-group">
+                <ul class="list-group" *ngFor="let c of cuentas">
+                    <li class="list-group-item">{{c.id_cuenta_madre}} - {{c.nombre_cuenta_madre}}</li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+    <div class="card">
+
+        <div class="card-body">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    Cras justo odio
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
+                    aria-disabled="true">Vestibulum at eros</a>
+            </div>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+    <div class="card">
+
+        <div class="card-body">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    Cras justo odio
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
+                    aria-disabled="true">Vestibulum at eros</a>
+            </div>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+</div>
