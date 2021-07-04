@@ -1,25 +1,25 @@
 <div class="card-deck">
     <div class="card">
-
         <div class="card-body">
             <h5 class="card-title">Registrar cuenta madre</h5>
-            <form [formGroup]="cuentaForm" #formDir="ngForm">
+            <form [formGroup]="cuentaMadreForm" #formDir="ngForm">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nombre de la cuenta</label>
-                    <input type="text" class="form-control" id="nombre" formControlName="nombre"
-                        aria-describedby="nombre" placeholder="Escriba el nombre de la cuenta" required>
+                    <input type="text" class="form-control" id="nombreCuentaMadre" formControlName="nombreCuentaMadre"
+                        aria-describedby="nombreCuentaMadre" placeholder="Escriba el nombre de la cuenta" required>
 
-                    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
-                        <div *ngIf="nombre.errors?.required">
+                    <div *ngIf="nombreCuentaMadre.invalid && (nombreCuentaMadre.dirty || nombreCuentaMadre.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="nombreCuentaMadre.errors?.required">
                             Campo requerido.
                         </div>
-                        <div *ngIf="nombre.errors?.minlength">
+                        <div *ngIf="nombreCuentaMadre.errors?.minlength">
                             Debe tener al menos 4 caraceres.
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" (click)="submit()"
-                    [disabled]="cuentaForm.invalid">Grabar</button>
+                <button type="submit" class="btn btn-primary" (click)="submitMadre()"
+                    [disabled]="cuentaMadreForm.invalid">Grabar</button>
             </form>
         </div>
         <div class="card-footer">
@@ -27,16 +27,26 @@
         </div>
     </div>
     <div class="card">
-
         <div class="card-body">
             <h5 class="card-title">Registrar cuenta hijo</h5>
-            <form>
+            <form [formGroup]="cuentaHijoForm" #formDir="ngForm">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nombre de la cuenta</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Escriba el nombre de la cuenta">
+                    <input type="text" class="form-control" id="nombreCuentaHijo" formControlName="nombreCuentaHijo"
+                        aria-describedby="nombreCuentaHijo" placeholder="Escriba el nombre de la cuenta" required>
+
+                    <div *ngIf="nombreCuentaHijo.invalid && (nombreCuentaHijo.dirty || nombreCuentaHijo.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="nombreCuentaHijo.errors?.required">
+                            Campo requerido.
+                        </div>
+                        <div *ngIf="nombreCuentaHijo.errors?.minlength">
+                            Debe tener al menos 4 caraceres.
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Grabar</button>
+                <button type="submit" class="btn btn-primary" (click)="submitHijo()"
+                    [disabled]="cuentaHijoForm.invalid">Grabar</button>
             </form>
         </div>
         <div class="card-footer">
@@ -44,16 +54,26 @@
         </div>
     </div>
     <div class="card">
-
         <div class="card-body">
             <h5 class="card-title">Registrar cuenta contable</h5>
-            <form>
+            <form [formGroup]="cuentaContableForm" #formDir="ngForm">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nombre de la cuenta</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Escriba el nombre de la cuenta">
+                    <input type="text" class="form-control" id="nombreCuentaContable" formControlName="nombreCuentaContable"
+                        aria-describedby="nombreCuentaContable" placeholder="Escriba el nombre de la cuenta" required>
+
+                    <div *ngIf="nombreCuentaContable.invalid && (nombreCuentaContable.dirty || nombreCuentaContable.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="nombreCuentaContable.errors?.required">
+                            Campo requerido.
+                        </div>
+                        <div *ngIf="nombreCuentaContable.errors?.minlength">
+                            Debe tener al menos 4 caraceres.
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Grabar</button>
+                <button type="submit" class="btn btn-primary" (click)="submitContable()"
+                    [disabled]="cuentaContableForm.invalid">Grabar</button>
             </form>
         </div>
         <div class="card-footer">
@@ -69,10 +89,9 @@
 
         <div class="card-body">
             <div class="list-group">
-                <ul class="list-group" *ngFor="let c of cuentas">
+                <ul class="list-group" *ngFor="let c of cuentasMadre">
                     <li class="list-group-item">{{c.id_cuenta_madre}} - {{c.nombre_cuenta_madre}}</li>
                 </ul>
-
             </div>
         </div>
         <div class="card-footer">
@@ -83,14 +102,9 @@
 
         <div class="card-body">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active">
-                    Cras justo odio
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
-                    aria-disabled="true">Vestibulum at eros</a>
+                <ul class="list-group" *ngFor="let c of cuentasHijo">
+                    <li class="list-group-item">{{c.id_cuenta_hijo}} - {{c.nombre_cuenta_hijo}}</li>
+                </ul>
             </div>
         </div>
         <div class="card-footer">
@@ -101,14 +115,9 @@
 
         <div class="card-body">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active">
-                    Cras justo odio
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
-                    aria-disabled="true">Vestibulum at eros</a>
+                <ul class="list-group" *ngFor="let c of cuentasContable">
+                    <li class="list-group-item">{{c.id_cuenta_contable}} - {{c.nombre_cuenta_contable}}</li>
+                </ul>
             </div>
         </div>
         <div class="card-footer">
