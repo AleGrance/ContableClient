@@ -82,8 +82,7 @@
                             <input type="text" class="form-control" formControlName="tel" id="tel"
                                 placeholder="Ingrese nro del teléfono">
 
-                            <div *ngIf="tel.invalid && (tel.dirty || tel.touched)"
-                                class="alert alert-danger">
+                            <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="alert alert-danger">
                                 <div *ngIf="tel.errors?.required">
                                     Campo requerido.
                                 </div>
@@ -97,8 +96,7 @@
                             <input type="text" class="form-control" formControlName="email" id="email"
                                 placeholder="Ingrese el email">
 
-                            <div *ngIf="email.invalid && (email.dirty || email.touched)"
-                                class="alert alert-danger">
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
                                 <div *ngIf="email.errors?.required">
                                     Campo requerido.
                                 </div>
@@ -150,8 +148,21 @@
                 <td>{{con.dir_contribuyente}}</td>
                 <td>{{con.tel_contribuyente}}</td>
                 <td>{{con.email_contribuyente}}</td>
-                <td><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"
-                            (click)="delete(con)"></i></button></td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Opciones
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" (click)="delete(con)">Eliminar</a>
+                        </div>
+                    </div>
+                </td>
 
 
             </tr>

@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                         </div>
-                    <!--    <div class="form-group form-check">
+                        <!--    <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>-->
@@ -86,7 +86,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Ruc</th>
-                <th scope="col">Email</th>
+                <th scope="col">Timbrado</th>
                 <th></th>
             </tr>
         </thead>
@@ -96,8 +96,23 @@
                 <td>{{u.nom_proveedor}}</td>
                 <td>{{u.ruc_proveedor}}</td>
                 <td>{{u.timbrado_proveedor}}</td>
-                <td><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"
-                            (click)="delete(u)"></i></button></td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Opciones
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" (click)="delete(u)">Eliminar</a>
+                        </div>
+                    </div>
+                </td>
+                <!--    <td><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"
+                            (click)="delete(u)"></i></button></td>-->
 
 
             </tr>
