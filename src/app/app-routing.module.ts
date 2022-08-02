@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { ContribuyenteComponent } from './pages/contribuyente/contribuyente.component';
 import { CuentaComponent } from './pages/cuenta/cuenta.component';
+import { FacturaCompraComponent } from './pages/factura-compra/factura-compra.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
 
@@ -21,6 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'cuenta_component', component: CuentaComponent
+  },
+  {
+    path: 'factura_compra_component', component: FacturaCompraComponent
   },
 
   // El modulo cuentas_module se importa pero no se usa. Fue para probar el lazy loading pero no se logro configurar el html
