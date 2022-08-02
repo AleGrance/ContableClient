@@ -145,14 +145,56 @@ export class ContribuyenteComponent implements OnInit {
 
     this.api.post('contribuyente', newContribuyente)
       .subscribe(result => {
-        this.contribuyentes.push(result);
-        console.log('result post: ', result);
+        // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
+        if (typeof result === 'object') {
+          this.contribuyentes.push(result);
+          this.toastr.success('Contribuyente registrado');
+        } else {
+          console.log('result post: ', result);
+          this.toastr.warning(result);
+        }
+      }, error => {
+        console.log('Si hay error en el post: ', error);
+      });
+  }
+
+  // Submit para Edit contribuyente
+  submitEdit() {
+
+    const razon = ((<HTMLInputElement>document.getElementById("razon_edit")).value);
+    const ruc = ((<HTMLInputElement>document.getElementById("ruc_edit")).value);
+    const timbrado = ((<HTMLInputElement>document.getElementById("timbrado_edit")).value);
+    const direccion = ((<HTMLInputElement>document.getElementById("direccion_edit")).value);
+    const tel = ((<HTMLInputElement>document.getElementById("tel_edit")).value);
+    const email = ((<HTMLInputElement>document.getElementById("email_edit")).value);
+
+    let editContribuyente = {
+      razon_social_contribuyente: razon,
+      ruc_contribuyente: ruc,
+      timbrado: timbrado,
+      dir_contribuyente: direccion,
+      tel_contribuyente: tel,
+      email_contribuyente: email,
+    }
+
+    this.api.put('contribuyente/' + this.contribuyenteEditarID, editContribuyente)
+      .subscribe(result => {
+        // Se vuelve a traer los datos de la tabla actualizada, para mostrar html lo que se modifico
+        this.api.get('contribuyente')
+          .pipe(map(data => {
+            this.contribuyentes = data;
+            console.log(this.contribuyentes);
+          }))
+          .subscribe()
+        // Llama al toastr
+        this.toastr.success('Contribuyente modificado');
       });
 
-    //console.log(razon, ruc, timbrado);
+    console.log(razon, ruc, timbrado);
 
   }
 
+  // Submit para Delete contribuyente
   delete(value: any) {
     const id = value.id_contribuyente
     console.log(id);
@@ -214,45 +256,15 @@ export class ContribuyenteComponent implements OnInit {
 
   }
 
-  // Submit para Edit contribuyente
-  submitEdit() {
-
-    const razon = ((<HTMLInputElement>document.getElementById("razon_edit")).value);
-    const ruc = ((<HTMLInputElement>document.getElementById("ruc_edit")).value);
-    const timbrado = ((<HTMLInputElement>document.getElementById("timbrado_edit")).value);
-    const direccion = ((<HTMLInputElement>document.getElementById("direccion_edit")).value);
-    const tel = ((<HTMLInputElement>document.getElementById("tel_edit")).value);
-    const email = ((<HTMLInputElement>document.getElementById("email_edit")).value);
-
-    let editContribuyente = {
-      razon_social_contribuyente: razon,
-      ruc_contribuyente: ruc,
-      timbrado: timbrado,
-      dir_contribuyente: direccion,
-      tel_contribuyente: tel,
-      email_contribuyente: email,
+  // Funcion que resetea el formulario de contribuyente
+  resetContribuyente() {
+    this.contribuyenteNuevo = {
+      razon_social_contribuyente: 'Nombre',
+      ruc_contribuyente: '4555888-5',
+      timbrado: '12345',
+      dir_contribuyente: 'Asunción',
+      tel_contribuyente: '0981222888',
+      email_contribuyente: 'correo@gmail.com',
     }
-
-    this.api.put('contribuyente/' + this.contribuyenteEditarID, editContribuyente)
-      .subscribe(result => {
-        this.api.get('contribuyente')
-          .pipe(map(data => {
-            this.contribuyentes = data;
-            console.log(this.contribuyentes);
-          }))
-          .subscribe()
-        //this.contribuyentes.push(result);
-        //console.log('After put: ', this.contribuyentes);
-      });
-
-    console.log(razon, ruc, timbrado);
-
   }
-
-  saveChanges(value: any) {
-    console.log("El elemento modificado", value);
-
-  }
-
-
 }
