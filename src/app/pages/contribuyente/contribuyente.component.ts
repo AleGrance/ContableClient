@@ -147,8 +147,9 @@ export class ContribuyenteComponent implements OnInit {
       .subscribe(result => {
         // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
         if (typeof result === 'object') {
-          this.contribuyentes.push(result);
           this.toastr.success('Contribuyente registrado');
+          // Llama a la funcion onInit que resetea el formulario
+          this.ngOnInit();
         } else {
           console.log('result post: ', result);
           this.toastr.warning(result);
@@ -254,17 +255,5 @@ export class ContribuyenteComponent implements OnInit {
       ])
     });
 
-  }
-
-  // Funcion que resetea el formulario de contribuyente
-  resetContribuyente() {
-    this.contribuyenteNuevo = {
-      razon_social_contribuyente: 'Nombre',
-      ruc_contribuyente: '4555888-5',
-      timbrado: '12345',
-      dir_contribuyente: 'Asunción',
-      tel_contribuyente: '0981222888',
-      email_contribuyente: 'correo@gmail.com',
-    }
   }
 }
