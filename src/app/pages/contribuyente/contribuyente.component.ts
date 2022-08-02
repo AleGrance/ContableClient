@@ -180,15 +180,15 @@ export class ContribuyenteComponent implements OnInit {
 
     this.api.put('contribuyente/' + this.contribuyenteEditarID, editContribuyente)
       .subscribe(result => {
-        // Se vuelve a traer los datos de la tabla actualizada, para mostrar html lo que se modifico
-        this.api.get('contribuyente')
-          .pipe(map(data => {
-            this.contribuyentes = data;
-            console.log(this.contribuyentes);
-          }))
-          .subscribe()
-        // Llama al toastr
-        this.toastr.success('Contribuyente modificado');
+        // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
+        if (typeof result === 'object') {
+          this.toastr.success('Contribuyente registrado');
+          // Llama a la funcion onInit que resetea el formulario
+          this.ngOnInit();
+        } else {
+          console.log('result post: ', result);
+          this.toastr.warning(result);
+        }
       });
 
     console.log(razon, ruc, timbrado);

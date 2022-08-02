@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-cliente',
@@ -17,7 +19,13 @@ export class ClienteComponent implements OnInit {
   };
   public clienteForm: any;
 
-  constructor(public api: ApiService) { }
+  public clienteEditar = {
+    razon_social_cliente: '',
+    ruc_cliente: '',
+  };
+  public clienteEditarForm: any;
+
+  constructor(public api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     
@@ -27,6 +35,17 @@ export class ClienteComponent implements OnInit {
         Validators.minLength(4)
       ]),
       ruc: new FormControl(this.clienteNuevo.ruc_cliente, [
+        Validators.required,
+        Validators.minLength(4)
+      ])
+    });
+
+    this.clienteEditarForm = new FormGroup({
+      razon: new FormControl(this.clienteEditar.razon_social_cliente, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      ruc: new FormControl(this.clienteEditar.ruc_cliente, [
         Validators.required,
         Validators.minLength(4)
       ])
@@ -58,9 +77,24 @@ export class ClienteComponent implements OnInit {
 
     this.api.post('cliente', newCliente)
       .subscribe(result => {
-        this.clientes.push(result);
-        console.log('result post: ', result);
+        // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
+        if (typeof result === 'object') {
+          this.toastr.success('Cliente registrado');
+          // Llama a la funcion onInit que resetea el formulario
+          this.ngOnInit();
+        } else {
+          console.log('result post: ', result);
+          this.toastr.warning(result);
+        }
       });
+  }
+
+  submitEdit() {
+
+  }
+
+  showEditModal(value: any) {
+
   }
 
   delete(value: any) {
