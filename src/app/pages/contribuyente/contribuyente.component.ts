@@ -13,6 +13,7 @@ export class ContribuyenteComponent implements OnInit {
 
   // El listado de contribuyentes
   public contribuyentes: any;
+  public contribuyenteForm: any;
 
   // Para el formulario de crear nuevo contribuyente
   public contribuyenteNuevo = {
@@ -23,7 +24,9 @@ export class ContribuyenteComponent implements OnInit {
     tel_contribuyente: '0981222888',
     email_contribuyente: 'correo@gmail.com',
   };
-  public contribuyenteForm: any;
+  
+  public contribuyenteEditarForm: any;
+  public contribuyenteEditarID: any;
 
   // Para el formulario de editar contribuyente
   public contribuyenteEditar = {
@@ -34,8 +37,6 @@ export class ContribuyenteComponent implements OnInit {
     tel_edit: "",
     email_edit: "",
   }
-  public contribuyenteEditarForm: any;
-  public contribuyenteEditarID: any;
 
   constructor(public api: ApiService, private toastr: ToastrService) { }
 
@@ -103,7 +104,7 @@ export class ContribuyenteComponent implements OnInit {
     this.api.get('contribuyente')
       .pipe(map(data => {
         this.contribuyentes = data;
-        console.log(this.contribuyentes);
+        //console.log(this.contribuyentes);
       }))
       .subscribe()
   }
@@ -182,7 +183,7 @@ export class ContribuyenteComponent implements OnInit {
       .subscribe(result => {
         // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
         if (typeof result === 'object') {
-          this.toastr.success('Contribuyente registrado');
+          this.toastr.success('Contribuyente modificado');
           // Llama a la funcion onInit que resetea el formulario
           this.ngOnInit();
         } else {
@@ -191,7 +192,7 @@ export class ContribuyenteComponent implements OnInit {
         }
       });
 
-    console.log(razon, ruc, timbrado);
+    //console.log(razon, ruc, timbrado);
 
   }
 
