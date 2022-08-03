@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-proveedor',
@@ -10,15 +11,28 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ProveedorComponent implements OnInit {
 
+  // El listado de proveedores
   public proveedores: any;
+  public proveedorForm: any;
+
+  // Para el formulario de crear nuevo proveedor
   public proveedorNuevo = {
     nom_proveedor: 'Nombre',
     ruc_proveedor: '12345',
     timbrado_proveedor: '12345',
   };
-  public proveedorForm: any;
 
-  constructor(public api: ApiService) { }
+  public proveedorEditarForm: any;
+  public proveedorEditarID: any;
+
+  // Para el formulario de editar proveedor
+  public proveedorEditar = {
+    nom_proveedor: "",
+    ruc_proveedor: "",
+    timbrado_proveedor: "",
+  };
+
+  constructor(public api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -37,6 +51,21 @@ export class ProveedorComponent implements OnInit {
       ])
     });
 
+    this.proveedorEditarForm = new FormGroup({
+      nombre_form: new FormControl(this.proveedorEditar.nom_proveedor, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      ruc_form: new FormControl(this.proveedorEditar.ruc_proveedor, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      timbrado_form: new FormControl(this.proveedorEditar.timbrado_proveedor, [
+        Validators.required,
+        Validators.minLength(5)
+      ])
+    });
+
     // Trae datos del api
     this.api.get('proveedor')
       .pipe(map(data => {
@@ -45,9 +74,15 @@ export class ProveedorComponent implements OnInit {
       .subscribe()
   }
 
+  // Validaciones para Add proveedor
   get nombre() { return this.proveedorForm.get('nombre'); }
   get ruc() { return this.proveedorForm.get('ruc'); }
   get timbrado() { return this.proveedorForm.get('timbrado'); }
+
+  // Validaciones para Edit proveedor
+  get nombre_getter() { return this.proveedorEditarForm.get('nombre_form'); }
+  get ruc_getter() { return this.proveedorEditarForm.get('ruc_form'); }
+  get timbrado_getter() { return this.proveedorEditarForm.get('timbrado_form'); }
 
   submit() {
 
@@ -63,26 +98,21 @@ export class ProveedorComponent implements OnInit {
 
     this.api.post('proveedor', newProveedor)
       .subscribe(result => {
-        this.proveedores.push(result);
-        console.log('result post: ', result);
+        // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
+        if (typeof result === 'object') {
+          this.toastr.success('Proveedor registrado');
+          // Llama a la funcion onInit que resetea el formulario
+          this.ngOnInit();
+        } else {
+          console.log('result post: ', result);
+          this.toastr.warning(result);
+        }
+      }, error => {
+        console.log('Si hay error en el post: ', error);
       });
 
-    console.log(nombre, ruc, timbrado);
+    //console.log(nombre, ruc, timbrado);
 
-  }
-
-  print(value: any) {
-    console.log(value);
-  }
-
-  postear() {
-    this.api.post('proveedor', this.proveedorForm)
-      .subscribe();
-  }
-
-  putear() {
-    this.api.put('proveedor/8', this.proveedorForm)
-      .subscribe();
   }
 
   delete(value: any) {
