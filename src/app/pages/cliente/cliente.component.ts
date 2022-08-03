@@ -101,7 +101,7 @@ export class ClienteComponent implements OnInit {
       });
   }
 
-  // Submit para Edit contribuyente
+  // Submit para Edit cliente
   submitEdit() {
     const razon = ((<HTMLInputElement>document.getElementById("razonId")).value);
     const ruc = ((<HTMLInputElement>document.getElementById("rucId")).value);

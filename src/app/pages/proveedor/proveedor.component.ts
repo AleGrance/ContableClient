@@ -115,6 +115,63 @@ export class ProveedorComponent implements OnInit {
 
   }
 
+  // Submit para Edit proveedor
+  submitEdit() {
+    const nombre = ((<HTMLInputElement>document.getElementById("nombreId")).value);
+    const ruc = ((<HTMLInputElement>document.getElementById("rucId")).value);
+    const timbrado = ((<HTMLInputElement>document.getElementById("timbradoId")).value);
+
+    let editProveedor = {
+      nom_proveedor: nombre,
+      ruc_proveedor: ruc,
+      timbrado_proveedor: timbrado
+    }
+
+    this.api.put('proveedor/' + this.proveedorEditarID, editProveedor)
+      .subscribe(result => {
+        // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
+        if (typeof result === 'object') {
+          this.toastr.success('Proveedor modificado');
+          // Llama a la funcion onInit que resetea el formulario
+          this.ngOnInit();
+        } else {
+          console.log('result post: ', result);
+          this.toastr.warning(result);
+        }
+      });
+  }
+
+  // Se llama al modal para editar el proveedor
+  showEditModal(value: any) {
+
+    this.proveedorEditarID = value.id_proveedor;
+
+    this.proveedorEditar = {
+      nom_proveedor: value.nom_proveedor,
+      ruc_proveedor: value.ruc_proveedor,
+      timbrado_proveedor: value.timbrado_proveedor
+    }
+
+    console.log("El elemento a editar en objeto", this.proveedorEditar, "Tiene ID: ", this.proveedorEditarID);
+
+    // Se crea el objeto formgroup con los datos del elemento seleccionado
+    this.proveedorEditarForm = new FormGroup({
+      nombre_form: new FormControl(this.proveedorEditar.nom_proveedor, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      ruc_form: new FormControl(this.proveedorEditar.ruc_proveedor, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      timbrado_form: new FormControl(this.proveedorEditar.timbrado_proveedor, [
+        Validators.required,
+        Validators.minLength(4)
+      ])
+    });
+
+  }
+
   delete(value: any) {
     const id = value.id_proveedor
     console.log(id);

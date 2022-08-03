@@ -35,8 +35,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">RUC</label>
-                            <input type="ruc" class="form-control" formControlName="ruc" id="ruc" aria-describedby="ruc"
-                                placeholder="Ingresar ruc">
+                            <input type="ruc" class="form-control" formControlName="ruc" id="ruc"
+                                aria-describedby="ruc" placeholder="Ingresar ruc">
 
                             <div *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)" class="alert alert-danger">
                                 <div *ngIf="ruc.errors?.required">
@@ -79,6 +79,75 @@
         </div>
     </div>
 
+    <!-- Modal EDIT-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Proveedor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="proveedorEditarForm" #formDir="ngForm">
+                        <div class="form-group">
+                            <label for="razon">Nombre</label>
+                            <input type="text" class="form-control" id="nombreId" formControlName="nombre_form"
+                                aria-describedby="nombre" placeholder="Ingresar razon social" required>
+
+                            <div *ngIf="nombre_getter.invalid && (nombre_getter.dirty || nombre_getter.touched)" class="alert alert-danger">
+                                <div *ngIf="nombre_getter.errors?.required">
+                                    Campo requerido.
+                                </div>
+                                <div *ngIf="nombre_getter.errors?.minlength">
+                                    Debe tener al menos 4 caraceres.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">RUC</label>
+                            <input type="ruc" class="form-control" id="rucId" formControlName="ruc_form" aria-describedby="ruc"
+                                placeholder="Ingresar ruc">
+
+                            <div *ngIf="ruc_getter.invalid && (ruc_getter.dirty || ruc_getter.touched)" class="alert alert-danger">
+                                <div *ngIf="ruc_getter.errors?.required">
+                                    Campo requerido.
+                                </div>
+                                <div *ngIf="ruc_getter.errors?.minlength">
+                                    Debe tener al menos 4 caraceres.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Timbrado</label>
+                            <input type="ruc" class="form-control" id="timbradoId" formControlName="timbrado_form" aria-describedby="timbrado"
+                                placeholder="Ingresar ruc">
+
+                            <div *ngIf="timbrado_getter.invalid && (timbrado_getter.dirty || timbrado_getter.touched)" class="alert alert-danger">
+                                <div *ngIf="timbrado_getter.errors?.required">
+                                    Campo requerido.
+                                </div>
+                                <div *ngIf="timbrado_getter.errors?.minlength">
+                                    Debe tener al menos 4 caraceres.
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary" [disabled]="proveedorEditarForm.invalid"
+                            (click)="submitEdit()">Grabar</button>
+
+                        <div *ngIf="formDir.submitted">
+                            <p>Esta submitted</p>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Table -->
     <table class="table table-sm table-hover table-dark">
         <thead>
@@ -103,9 +172,8 @@
                             Opciones
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#editModal"
+                                (click)="showEditModal(u)">Editar</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" (click)="delete(u)">Eliminar</a>
                         </div>
