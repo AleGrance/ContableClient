@@ -60,7 +60,7 @@ export class ClienteComponent implements OnInit {
     this.api.get('cliente')
       .pipe(map(data => {
         this.clientes = data;
-        //console.log(this.clientes);
+        console.log(this.clientes);
       }))
       .subscribe()
 
