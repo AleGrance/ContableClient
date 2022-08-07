@@ -45,7 +45,7 @@
                                     <label for="">Factura nro:</label>
                                     <input id="nro" type="text" class="form-control">
                                     <label for="">Condición:</label>
-                                    <ng-select>
+                                    <ng-select (change)="onChangeCondicion($event)">
                                         <ng-option value="Contado">Contado</ng-option>
                                         <ng-option value="Crédito">Crédito</ng-option>
                                     </ng-select>
@@ -81,9 +81,9 @@
                                             <td><input type="text" id="descripcion" class="form-control" />
                                             </td>
                                             <td><input type="number" id="cantidad" class="form-control"
-                                                    (change)="onChange()" /></td>
+                                                    (change)="onChangeCantidad()" /></td>
                                             <td><input type="number" id="precio" class="form-control"
-                                                    (change)="onChange()" /></td>
+                                                    (change)="onChangeCantidad()" /></td>
                                             <td><input type="number" id="subtotal" value="{{subtotal}}"
                                                     class="form-control" disabled /></td>
                                             <td><button type="button" class="btn btn-danger">Eliminar</button></td>
