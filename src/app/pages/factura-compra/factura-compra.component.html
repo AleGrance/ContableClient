@@ -21,10 +21,11 @@
                 <div class="col-sm-12">
                     <div class="panel panel-default invoice" id="invoice">
                         <div class="panel-body">
-                            <div class="row">
+                            <div class="row border" style="margin-bottom: 10px; margin-top: 10px;">
 
                                 <div class="col-md-4">
                                     <p class="lead">Datos del proveedor</p>
+                                    <label for="">Razon social:</label>
                                     <ng-select  (change)="onChangeProveedor($event)">
                                         <ng-option *ngFor="let p of proveedores" value="{{p.id_proveedor}}">{{p.nom_proveedor}}</ng-option>
                                     </ng-select>    
@@ -37,11 +38,17 @@
                                     <p>RUC: {{clienteEncontrado.ruc_cliente}}</p>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="margin-bottom: 10px;">
                                     <p class="lead marginbottom">Detalles de pago</p>
+                                    <label for="">Fecha:</label>
                                     <input id="fecha" type="date" class="form-control">
+                                    <label for="">Factura nro:</label>
                                     <input id="nro" type="text" class="form-control">
-                                    
+                                    <label for="">Condición:</label>
+                                    <ng-select>
+                                        <ng-option value="Contado">Contado</ng-option>
+                                        <ng-option value="Crédito">Crédito</ng-option>
+                                    </ng-select>
                                 </div>
 
                             </div>
@@ -91,12 +98,7 @@
                                     <!-- <button type="button" class="btn btn-primary" (click)="add()">Add item</button>-->
                                     <button type="button" class="btn btn-primary" (click)="grabar()">Grabar</button>
                                 </div>
-                                <div class="col-md-6 text-right pull-right invoice-total">
-                                    <p>Subtotal : $1019</p>
-                                    <p>Discount (10%) : $101 </p>
-                                    <p>VAT (8%) : $73 </p>
-                                    <p>Total : $991 </p>
-                                </div>
+                                
                             </div>
 
                         </div>
