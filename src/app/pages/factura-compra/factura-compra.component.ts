@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class FacturaCompraComponent implements OnInit {
   // El cliente encontrado mediante el id que le pasa cliente_component
-  public clienteEncontrado: any;
+  public contribuyenteEncontrado: any;
   // El listado de contribuyentes
   public contribuyentes: any;
   // El listado de proveedores
@@ -34,17 +34,17 @@ export class FacturaCompraComponent implements OnInit {
   constructor(public api: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // First get the product id from the current route.
+    // Primero se obtiene el ID enviado a travez de la ruta
     const routeParams = this.route.snapshot.paramMap;
-    const clienteIdFromRoute = Number(routeParams.get('id_cliente'));
-    // Find the product that correspond with the id provided in route.
-    this.api.get('cliente/' + clienteIdFromRoute)
-    .pipe(map(data => {
-      this.clienteEncontrado = data;
-      console.log("El cliente es: ", this.clienteEncontrado);
-    }))
-    .subscribe()
-    
+    const contribuyenteIdFromRoute = Number(routeParams.get('id_contribuyente'));
+    // Luego se busca el registro en la base de dato a travez del API
+    this.api.get('contribuyente/' + contribuyenteIdFromRoute)
+      .pipe(map(data => {
+        this.contribuyenteEncontrado = data;
+        console.log("El contribuyente es: ", this.contribuyenteEncontrado);
+      }))
+      .subscribe()
+
     // Trae datos del api
     this.api.get('contribuyente')
       .pipe(map(data => {
@@ -52,7 +52,6 @@ export class FacturaCompraComponent implements OnInit {
         //console.log(this.contribuyentes);
       }))
       .subscribe()
-
 
     // Trae datos del api
     this.api.get('proveedor')
@@ -81,6 +80,16 @@ export class FacturaCompraComponent implements OnInit {
 
   // Guardar los cambios
   grabar() {
+    const cabeceraCompra = {
+      nro_factura_compra: "",
+      fecha_factura_compra: "",
+      condicion_venta_compra: "",
+      sub_total_compra: "",
+      iva_total_compra: "",
+      total_compra: "",
+    }
+
+    console.log(cabeceraCompra);
 
   }
 

@@ -25,7 +25,7 @@ const routes: Routes = [
     path: 'cuenta_component', component: CuentaComponent
   },
   {
-    path: 'factura_compra/:id_cliente', component: FacturaCompraComponent
+    path: 'factura_compra/:id_contribuyente', component: FacturaCompraComponent
   },
   {
     path: 'detalle-cliente/:id_cliente', component: DetalleClienteComponent

@@ -16,7 +16,9 @@ export class DetalleClienteComponent implements OnInit {
   ngOnInit(): void {  
     // First get the product id from the current route.
     const routeParams = this.route.snapshot.paramMap;
-    const clienteIdFromRoute = Number(routeParams.get('id_cliente'));
+    const clienteIdFromRoute = Number(routeParams.get('id_contribuyente'));
+
+    console.log(clienteIdFromRoute);
 
     // Find the product that correspond with the id provided in route.
     this.api.get('cliente/' + clienteIdFromRoute)
