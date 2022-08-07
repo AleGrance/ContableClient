@@ -14,6 +14,7 @@ import { CuentaComponent } from './pages/cuenta/cuenta.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FacturaCompraComponent } from './pages/factura-compra/factura-compra.component';
+import { DetalleClienteComponent } from './pages/detalle-cliente/detalle-cliente.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FacturaCompraComponent } from './pages/factura-compra/factura-compra.co
     ContribuyenteComponent,
     ReporteComponent,
     CuentaComponent,
-    FacturaCompraComponent
+    FacturaCompraComponent,
+    DetalleClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { FacturaCompraComponent } from './pages/factura-compra/factura-compra.co
     ToastrModule.forRoot(), // ToastrModule added
 
   ],
-  providers: [],
+  providers: [ClienteComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

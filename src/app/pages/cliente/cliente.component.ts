@@ -10,7 +10,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
-
   // El listado de clientes
   public clientes: any;
   public clienteForm: any;
@@ -60,7 +59,7 @@ export class ClienteComponent implements OnInit {
     this.api.get('cliente')
       .pipe(map(data => {
         this.clientes = data;
-        console.log(this.clientes);
+        //console.log(this.clientes);
       }))
       .subscribe()
 
@@ -125,6 +124,11 @@ export class ClienteComponent implements OnInit {
       });
   }
 
+  // Se ejecuta al seleccionar la opcion factura compra
+  clienteSeleccionado(value: any) {
+    
+  }
+
   // Se llama al modal para editar el cliente
   showEditModal(value: any) {
 
@@ -164,5 +168,7 @@ export class ClienteComponent implements OnInit {
         }
       });
   }
+
+
 
 }

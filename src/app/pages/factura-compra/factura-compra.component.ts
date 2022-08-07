@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute } from '@angular/router';
+
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -8,7 +10,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./factura-compra.component.css']
 })
 export class FacturaCompraComponent implements OnInit {
-
+  // El cliente encontrado mediante el id que le pasa cliente_component
+  public clienteEncontrado: any;
   // El listado de contribuyentes
   public contribuyentes: any;
   // El listado de proveedores
@@ -30,9 +33,20 @@ export class FacturaCompraComponent implements OnInit {
   }*/
 
 
-  constructor(public api: ApiService) { }
+  constructor(public api: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // First get the product id from the current route.
+    const routeParams = this.route.snapshot.paramMap;
+    const clienteIdFromRoute = Number(routeParams.get('id_cliente'));
+    // Find the product that correspond with the id provided in route.
+    this.api.get('cliente/' + clienteIdFromRoute)
+    .pipe(map(data => {
+      this.clienteEncontrado = data;
+      console.log("El cliente es: ", this.clienteEncontrado);
+    }))
+    .subscribe()
+    
     // Trae datos del api
     this.api.get('contribuyente')
       .pipe(map(data => {
@@ -46,7 +60,7 @@ export class FacturaCompraComponent implements OnInit {
     this.api.get('proveedor')
       .pipe(map(data => {
         this.proveedores = data;
-        console.log(this.proveedores);
+        //console.log(this.proveedores);
       }))
       .subscribe()
   }
@@ -69,6 +83,10 @@ export class FacturaCompraComponent implements OnInit {
   // Guardar los cambios
   grabar() {
 
+  }
+
+  cargarClienteSeleccionado(value: any) {
+    console.log("Datos recibidos de cliente component: ", value);
   }
 
   // Agregar item // Para este caso no se va usar
