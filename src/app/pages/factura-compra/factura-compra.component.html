@@ -24,31 +24,24 @@
                             <div class="row">
 
                                 <div class="col-md-4">
-                                    <p class="lead marginbottom payment-info">Datos del proveedor</p>
-                                    <select id="razon" name="selectbasic" class="form-control" (change)="onChangeProveedor($event)">
-                                        <option>Seleccionar proveedor</option>
-                                        <option *ngFor="let p of proveedores" value="{{p.id_proveedor}}">{{p.nom_proveedor}}</option>
-                                    </select>
-                                    <p>RUC: {{ruc_proveedor}}</p>
-                                    <p>Timbrado: {{timbrado_proveedor}}</p>
-                              
+                                    <p class="lead">Datos del proveedor</p>
+                                    <ng-select  (change)="onChangeProveedor($event)">
+                                        <ng-option *ngFor="let p of proveedores" value="{{p.id_proveedor}}">{{p.nom_proveedor}}</ng-option>
+                                    </ng-select>    
                                 </div>
 
                                 <div class="col-md-5">
-                                    <p class="lead marginbottom payment-info">Datos del cliente</p>
+                                    <p class="lead marginbottom">Datos del cliente</p>
                                     <p>ID: {{clienteEncontrado.id_cliente}}</p>
                                     <p>Razon Social: {{clienteEncontrado.razon_social_cliente}}</p>
                                     <p>RUC: {{clienteEncontrado.ruc_cliente}}</p>
-                                    
-
                                 </div>
 
                                 <div class="col-md-3">
-                                    <p class="lead marginbottom payment-info">Detalles de pago</p>
-                                    <input type="date" class="form-control">
-                                    <p>VAT: DK888-777 </p>
-                                    <p>Total Amount: $1019</p>
-                                    <p>Account Name: Flatter</p>
+                                    <p class="lead marginbottom">Detalles de pago</p>
+                                    <input id="fecha" type="date" class="form-control">
+                                    <input id="nro" type="text" class="form-control">
+                                    
                                 </div>
 
                             </div>
@@ -80,9 +73,12 @@
                                         <tr>
                                             <td><input type="text" id="descripcion" class="form-control" />
                                             </td>
-                                            <td><input type="number" id="cantidad" class="form-control" (change)="onChange()"/></td>
-                                            <td><input type="number" id="precio" class="form-control" (change)="onChange()"/></td>
-                                            <td><input type="number" id="subtotal" value="{{subtotal}}" class="form-control" disabled /></td>
+                                            <td><input type="number" id="cantidad" class="form-control"
+                                                    (change)="onChange()" /></td>
+                                            <td><input type="number" id="precio" class="form-control"
+                                                    (change)="onChange()" /></td>
+                                            <td><input type="number" id="subtotal" value="{{subtotal}}"
+                                                    class="form-control" disabled /></td>
                                             <td><button type="button" class="btn btn-danger">Eliminar</button></td>
                                         </tr>
                                     </tbody>

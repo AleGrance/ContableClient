@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
-
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -16,8 +15,7 @@ export class FacturaCompraComponent implements OnInit {
   public contribuyentes: any;
   // El listado de proveedores
   public proveedores: any;
-  public ruc_proveedor: any;
-  public timbrado_proveedor: any;
+  public proveedorId: any;
 
   // El subtotal calculado
   public subtotal = 0;
@@ -60,14 +58,15 @@ export class FacturaCompraComponent implements OnInit {
     this.api.get('proveedor')
       .pipe(map(data => {
         this.proveedores = data;
-        //console.log(this.proveedores);
+        console.log(this.proveedores);
       }))
       .subscribe()
   }
 
   // Al seleccionar el proveedor
   onChangeProveedor(id: any) {
-    console.log(id);
+    this.proveedorId = parseInt(id);
+    console.log(this.proveedorId);
   }
 
   // Calcula el subtotal
