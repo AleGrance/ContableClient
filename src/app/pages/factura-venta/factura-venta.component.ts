@@ -25,9 +25,27 @@ export class FacturaVentaComponent implements OnInit {
   // El subtotal calculado
   public subtotal = 0;
 
-  constructor() { }
+  constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    // Primero se obtiene el ID enviado a travez de la ruta
+    const routeParams = this.route.snapshot.paramMap;
+    this.contribuyenteId = Number(routeParams.get('id_contribuyente')); //Este parametro se configura en app-routes
+    // Luego se busca el registro en la base de dato a travez del API para obtener los datos del contribuyente y mostrar en pantalla
+    this.api.get('contribuyente/' + this.contribuyenteId)
+      .pipe(map(data => {
+        this.contribuyenteEncontrado = data;
+        //console.log("El contribuyente es: ", this.contribuyenteEncontrado);
+      }))
+      .subscribe()
+
+      // Trae datos del api
+    this.api.get('cliente')
+    .pipe(map(data => {
+      this.clientes = data;
+      //console.log(this.proveedores);
+    }))
+    .subscribe()
   }
 
 }

@@ -29,7 +29,7 @@ const routes: Routes = [
     path: 'factura_compra/:id_contribuyente', component: FacturaCompraComponent
   },
   {
-    path: 'factura_venta', component: FacturaVentaComponent
+    path: 'factura_venta/:id_contribuyente', component: FacturaVentaComponent
   },
   {
     path: 'detalle-cliente/:id_cliente', component: DetalleClienteComponent
