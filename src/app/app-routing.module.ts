@@ -7,6 +7,8 @@ import { DetalleClienteComponent } from './pages/detalle-cliente/detalle-cliente
 import { FacturaCompraComponent } from './pages/factura-compra/factura-compra.component';
 import { FacturaVentaComponent } from './pages/factura-venta/factura-venta.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
+import { ReporteCompraComponent } from './pages/reporte-compra/reporte-compra.component';
+import { ReporteVentaComponent } from './pages/reporte-venta/reporte-venta.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
 
 const routes: Routes = [
@@ -26,13 +28,19 @@ const routes: Routes = [
     path: 'cuenta_component', component: CuentaComponent
   },
   {
-    path: 'factura_compra/:id_contribuyente', component: FacturaCompraComponent
+    path: 'factura-compra/:id_contribuyente', component: FacturaCompraComponent
   },
   {
-    path: 'factura_venta/:id_contribuyente', component: FacturaVentaComponent
+    path: 'factura-venta/:id_contribuyente', component: FacturaVentaComponent
   },
   {
     path: 'detalle-cliente/:id_cliente', component: DetalleClienteComponent
+  },
+  {
+    path: 'reporte-compra/:id_contribuyente', component: ReporteCompraComponent
+  },
+  {
+    path: 'reporte-venta/:id_contribuyente', component: ReporteVentaComponent
   },
 
   // El modulo cuentas_module se importa pero no se usa. Fue para probar el lazy loading pero no se logro configurar el html

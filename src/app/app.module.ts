@@ -16,6 +16,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { FacturaCompraComponent } from './pages/factura-compra/factura-compra.component';
 import { DetalleClienteComponent } from './pages/detalle-cliente/detalle-cliente.component';
 import { FacturaVentaComponent } from './pages/factura-venta/factura-venta.component';
+import { ReporteCompraComponent } from './pages/reporte-compra/reporte-compra.component';
+import { ReporteVentaComponent } from './pages/reporte-venta/reporte-venta.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { FacturaVentaComponent } from './pages/factura-venta/factura-venta.compo
     CuentaComponent,
     FacturaCompraComponent,
     DetalleClienteComponent,
-    FacturaVentaComponent
+    FacturaVentaComponent,
+    ReporteCompraComponent,
+    ReporteVentaComponent
   ],
   imports: [
     BrowserModule,
