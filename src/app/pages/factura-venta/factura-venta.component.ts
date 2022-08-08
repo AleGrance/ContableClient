@@ -53,6 +53,12 @@ export class FacturaVentaComponent implements OnInit {
     this.clienteId = parseInt(id);
   }
 
+  // Al seleccionar la condicion
+  onChangeCondicion(value: any) {
+    this.condicion = value;
+    console.log(this.condicion);
+  }
+
   // Calcula el subtotal al modificar el monto o el precio
   onChangeCantidad() {
     const cantidad = parseInt((document.getElementById("cantidad") as HTMLInputElement).value);

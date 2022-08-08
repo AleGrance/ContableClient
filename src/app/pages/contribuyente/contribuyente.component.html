@@ -273,7 +273,7 @@
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" [routerLink]="['/factura_compra', con.id_contribuyente]">*Cargar Fact compra</a>
-                            <a class="dropdown-item">Cargar Fact venta</a>
+                            <a class="dropdown-item" [routerLink]="['/factura_venta', con.id_contribuyente]">Cargar Fact venta</a>
                             <a class="dropdown-item" [routerLink]="['/reporte', con.id_contribuyente]">*Reporte de compras</a>
                             <a class="dropdown-item">Reporte de ventas</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#editModal" (click)="showEditModal(con)">*Editar</a>

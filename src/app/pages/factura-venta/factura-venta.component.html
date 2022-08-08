@@ -1,1 +1,114 @@
-<p>factura-venta works!</p>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="ventas-tab" data-toggle="tab" href="#ventas" role="tab" aria-controls="ventas"
+            aria-selected="true">Ventas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="vencimientos-tab" data-toggle="tab" href="#vencimientos" role="tab"
+            aria-controls="vencimientos" aria-selected="false">Vencimientos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="abiertos-tab" data-toggle="tab" href="#abiertos" role="tab" aria-controls="abiertos"
+            aria-selected="false">Abiertos</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="ventas" role="tabpanel" aria-labelledby="ventas-tab">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default invoice" id="invoice">
+                        <div class="panel-body">
+                            <div class="row border" style="margin-bottom: 10px; margin-top: 10px;">
+
+                                <div class="col-md-4">
+                                    <p class="lead">Datos del cliente</p>
+                                    <label for="">Razon social:</label>
+                                    <ng-select  (change)="onChangeCliente($event)">
+                                        <ng-option *ngFor="let obj of clientes" value="{{obj.id_cliente}}">{{obj.razon_social_cliente}}</ng-option>
+                                    </ng-select>    
+                                </div>
+
+                                <div class="col-md-5">
+                                    <p class="lead marginbottom">Datos del contribuyente</p>
+                                    <p>ID: {{contribuyenteEncontrado.id_contribuyente}}</p>
+                                    <p>Razon Social: {{contribuyenteEncontrado.razon_social_contribuyente}}</p>
+                                    <p>RUC: {{contribuyenteEncontrado.ruc_contribuyente}}</p>
+                                </div>
+
+                                <div class="col-md-3" style="margin-bottom: 10px;">
+                                    <p class="lead marginbottom">Detalles de pago</p>
+                                    <label for="">Fecha:</label>
+                                    <input id="fecha" type="date" class="form-control">
+                                    <label for="">Factura nro:</label>
+                                    <input id="nro" type="text" class="form-control">
+                                    <label for="">Condición:</label>
+                                    <ng-select (change)="onChangeCondicion($event)">
+                                        <ng-option value="Contado">Contado</ng-option>
+                                        <ng-option value="Crédito 15 días">Crédito 15 días</ng-option>
+                                        <ng-option value="Crédito 30 días">Crédito 30 días</ng-option>
+                                        <ng-option value="Crédito 90 días">Crédito 90 días</ng-option>
+                                    </ng-select>
+                                </div>
+
+                            </div>
+
+                            <div class="row table-row">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:50%">Item</th>
+                                            <th class="" style="width:15%">Cantidad</th>
+                                            <th class="" style="width:15%">Precio</th>
+                                            <th class="" style="width:15%">Sub total</th>
+                                            <th class="" style="width:15%">Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--<tr *ngFor="let item of invoice.items; let i = index">
+                                            <td><input type="text" value="{{item.description}}" class="form-control" />
+                                            </td>
+                                            <td><input type="number" value="{{item.qty}}" class="form-control"
+                                                    (change)="onChange($event)" /></td>
+                                            <td><input type="number" value="{{item.price}}" class="form-control" /></td>
+                                            <td><input type="number" value="{{item.qty * item.price}}"
+                                                    class="form-control" disabled /></td>
+                                            <td><button type="button" class="btn btn-danger"
+                                                    (click)="remove(i)">Eliminar</button></td>
+                                        </tr>-->
+
+                                        <tr>
+                                            <td><input type="text" id="descripcion" class="form-control" />
+                                            </td>
+                                            <td><input type="number" id="cantidad" class="form-control"
+                                                    (change)="onChangeCantidad()" /></td>
+                                            <td><input type="number" id="precio" class="form-control"
+                                                    (change)="onChangeCantidad()" /></td>
+                                            <td><input type="number" id="subtotal" value="{{subtotal}}"
+                                                    class="form-control" disabled /></td>
+                                            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 margintop">
+                                    <!-- <button type="button" class="btn btn-primary" (click)="add()">Add item</button>-->
+                                    <button type="button" class="btn btn-primary" (click)="grabar()">Grabar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="tab-pane fade" id="vencimientos" role="tabpanel" aria-labelledby="vencimientos-tab">...</div>
+    <div class="tab-pane fade" id="abiertos" role="tabpanel" aria-labelledby="abiertos-tab">...</div>
+</div>

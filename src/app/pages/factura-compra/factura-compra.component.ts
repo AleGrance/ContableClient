@@ -55,6 +55,7 @@ export class FacturaCompraComponent implements OnInit {
     //console.log(this.proveedorId);
   }
 
+  // Al seleccionar la condicion
   onChangeCondicion(value: any) {
     this.condicion = value;
     console.log(this.condicion);
@@ -107,7 +108,7 @@ export class FacturaCompraComponent implements OnInit {
       .subscribe(result => {
         // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
         if (typeof result === 'object') {
-          this.toastr.success('Compra registrada');
+          this.toastr.success('Factura de compra registrada');
           // Solo si cumple la condicion se registra el detalle
           this.api.post('detalle_compra', detalleCompra)
             .subscribe(result => {
