@@ -14,11 +14,17 @@
         <tr *ngFor="let item of cabecerasCompra">
             <th scope="row">{{contribuyenteEncontrado.ruc_contribuyente}}</th>
             <td>{{contribuyenteEncontrado.razon_social_contribuyente}}</td>
-            <td>Otto</td>
+            <td>DATO FALTANTE</td>
             <td>{{item.fecha_factura_compra}}</td>
             <td>{{item.condicion_venta_compra}}</td>
             <td>{{item.nro_factura_compra}}</td>
             <td>{{item.total_compra}}</td>
         </tr>
+        <a href="" class="float">
+            <i class="fa fa-file-excel-o my-float"></i>
+        </a>
+        <a href="" class="float2">
+            <i class="fa fa-file-pdf-o my-float"></i>
+        </a>
     </tbody>
 </table>
