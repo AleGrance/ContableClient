@@ -48,4 +48,78 @@ export class FacturaVentaComponent implements OnInit {
     .subscribe()
   }
 
+  // Al seleccionar el cliente se guarda el ID en una variable para enviar a la base de datos
+  onChangeCliente(id: any) {
+    this.clienteId = parseInt(id);
+  }
+
+  // Calcula el subtotal al modificar el monto o el precio
+  onChangeCantidad() {
+    const cantidad = parseInt((document.getElementById("cantidad") as HTMLInputElement).value);
+    const precio = parseInt((document.getElementById("precio") as HTMLInputElement).value);
+
+    this.subtotal = cantidad * precio;
+  }
+
+  // Guardar los cambios
+  grabar() {
+    // Datos para la cabecera
+    const nrofactura = (document.getElementById("nro") as HTMLInputElement).value;
+    const fecha = (document.getElementById("fecha") as HTMLInputElement).value;
+
+    //Datos para el detalle
+    const descripcion = (document.getElementById("descripcion") as HTMLInputElement).value;
+    const cantidad = (document.getElementById("cantidad") as HTMLInputElement).value;
+    const precio = (document.getElementById("precio") as HTMLInputElement).value;
+
+    // Objeto cabecera
+    const cabeceraVenta = {
+      nro_factura_venta: nrofactura,
+      condicion_venta_venta: this.condicion,
+      fecha_factura_venta: fecha,
+      total_venta: this.subtotal,
+      // Campos relacionados
+      ContribuyenteIdContribuyente: this.contribuyenteId,
+      ClienteIdCliente: this.clienteId,
+    }
+
+    //Objeto detalle
+    const detalleVenta = {
+      descripcion_detalle_venta: descripcion,
+      cant_item_detalle_venta: cantidad,
+      subtotal_detalle_venta: this.subtotal,
+      precio_detalle_venta: precio,
+      nro_factura_venta: nrofactura
+    }
+
+    console.log(cabeceraVenta);
+    console.log(detalleVenta);
+
+
+    this.api.post('cabecera_venta', cabeceraVenta)
+      .subscribe(result => {
+        // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
+        if (typeof result === 'object') {
+          this.toastr.success('Factura de venta registrada');
+          // Solo si cumple la condicion se registra el detalle
+          this.api.post('detalle_venta', detalleVenta)
+            .subscribe(result => {
+            }, error => {
+              console.log('Si hay error en el post: ', error);
+            });
+
+          // Llama a la funcion onInit que resetea el formulario
+          this.ngOnInit();
+        } else {
+          console.log('result post: ', result);
+          this.toastr.warning(result);
+        }
+      }, error => {
+        console.log('Si hay error en el post: ', error);
+      });
+
+
+
+  }
+
 }
