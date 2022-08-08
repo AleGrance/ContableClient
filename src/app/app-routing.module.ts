@@ -5,6 +5,7 @@ import { ContribuyenteComponent } from './pages/contribuyente/contribuyente.comp
 import { CuentaComponent } from './pages/cuenta/cuenta.component';
 import { DetalleClienteComponent } from './pages/detalle-cliente/detalle-cliente.component';
 import { FacturaCompraComponent } from './pages/factura-compra/factura-compra.component';
+import { FacturaVentaComponent } from './pages/factura-venta/factura-venta.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
 
@@ -26,6 +27,9 @@ const routes: Routes = [
   },
   {
     path: 'factura_compra/:id_contribuyente', component: FacturaCompraComponent
+  },
+  {
+    path: 'factura_venta', component: FacturaVentaComponent
   },
   {
     path: 'detalle-cliente/:id_cliente', component: DetalleClienteComponent

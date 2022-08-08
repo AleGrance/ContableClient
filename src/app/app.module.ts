@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FacturaCompraComponent } from './pages/factura-compra/factura-compra.component';
 import { DetalleClienteComponent } from './pages/detalle-cliente/detalle-cliente.component';
+import { FacturaVentaComponent } from './pages/factura-venta/factura-venta.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DetalleClienteComponent } from './pages/detalle-cliente/detalle-cliente
     ReporteComponent,
     CuentaComponent,
     FacturaCompraComponent,
-    DetalleClienteComponent
+    DetalleClienteComponent,
+    FacturaVentaComponent
   ],
   imports: [
     BrowserModule,
