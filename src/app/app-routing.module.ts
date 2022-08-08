@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'proveedor_component', component: ProveedorComponent
   },
   {
-    path: 'reporte_component', component: ReporteComponent
+    path: 'reporte/:id_contribuyente', component: ReporteComponent
   },
   {
     path: 'cuenta_component', component: CuentaComponent
