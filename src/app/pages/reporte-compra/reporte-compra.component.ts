@@ -14,6 +14,10 @@ export class ReporteCompraComponent implements OnInit {
   public contribuyenteEncontrado: any;
   // Se almacena el ID del contribuyente para enviar al grabar el registro
   public contribuyenteId: any;
+
+  // Listado de las cabecera de compra segun el contribuyente seleccionado
+  public cabecerasCompra: any;
+
   constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -24,7 +28,15 @@ export class ReporteCompraComponent implements OnInit {
     this.api.get('contribuyente/' + this.contribuyenteId)
       .pipe(map(data => {
         this.contribuyenteEncontrado = data;
-        //console.log("El contribuyente es: ", this.contribuyenteEncontrado);
+        console.log("El contribuyente es: ", this.contribuyenteEncontrado);
+      }))
+      .subscribe()
+
+
+      this.api.get('cabecera_compra/contribuyente/' + this.contribuyenteId)
+      .pipe(map(data => {
+        this.cabecerasCompra = data;
+        console.log("El contribuyente es: ", this.cabecerasCompra);
       }))
       .subscribe()
   }

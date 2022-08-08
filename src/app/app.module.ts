@@ -18,6 +18,7 @@ import { DetalleClienteComponent } from './pages/detalle-cliente/detalle-cliente
 import { FacturaVentaComponent } from './pages/factura-venta/factura-venta.component';
 import { ReporteCompraComponent } from './pages/reporte-compra/reporte-compra.component';
 import { ReporteVentaComponent } from './pages/reporte-venta/reporte-venta.component';
+//import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ReporteVentaComponent } from './pages/reporte-venta/reporte-venta.compo
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    //FontAwesomeModule,
     ReactiveFormsModule,
     NgSelectModule,   //se usa la version 7 que es compatible con el angular 12
     HttpClientModule, //se importa
