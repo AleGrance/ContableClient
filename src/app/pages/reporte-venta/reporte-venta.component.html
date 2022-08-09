@@ -4,6 +4,7 @@
             <th scope="col">RUC del Informante</th>
             <th scope="col">Nombre o Razón Social del Informante</th>
             <th scope="col">RUC / N° de Identificación del Informado</th>
+            <th scope="col">Nombre del cliente</th>
             <th scope="col">Fecha de Emisión</th>
             <th scope="col">Condición de la Operación</th>
             <th scope="col">Número de Comprobante</th>
@@ -14,7 +15,8 @@
         <tr *ngFor="let item of cabecerasVenta">
             <th scope="row">{{contribuyenteEncontrado.ruc_contribuyente}}</th>
             <td>{{contribuyenteEncontrado.razon_social_contribuyente}}</td>
-            <td>DATO FALTANTE</td>
+            <td>{{item.Cliente.ruc_cliente}}</td>
+            <td>{{item.Cliente.razon_social_cliente}}</td>
             <td>{{item.fecha_factura_venta}}</td>
             <td>{{item.condicion_venta_venta}}</td>
             <td>{{item.nro_factura_venta}}</td>
