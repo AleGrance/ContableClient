@@ -26,9 +26,10 @@
                                 <div class="col-md-4">
                                     <p class="lead">Datos del proveedor</p>
                                     <label for="">Razon social:</label>
-                                    <ng-select  (change)="onChangeProveedor($event)">
-                                        <ng-option *ngFor="let p of proveedores" value="{{p.id_proveedor}}">{{p.nom_proveedor}}</ng-option>
-                                    </ng-select>    
+                                    <ng-select (change)="onChangeProveedor($event)">
+                                        <ng-option *ngFor="let p of proveedores" value="{{p.id_proveedor}}">
+                                            {{p.nom_proveedor}}</ng-option>
+                                    </ng-select>
                                 </div>
 
                                 <div class="col-md-5">
@@ -59,12 +60,12 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="width:25%">Detalle</th>
-                                            <th class="" style="width:15%">Cantidad</th>
+                                            <th style="width:25%">Descripción</th>
                                             <th class="" style="width:15%">Gravado 10%</th>
                                             <th class="" style="width:15%">IVA 10%</th>
                                             <th class="" style="width:15%">Gravado 5%</th>
                                             <th class="" style="width:15%">IVA 5%</th>
+                                            <th class="" style="width:15%">Exento</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,16 +84,16 @@
                                         <tr>
                                             <td><input type="text" id="descripcion" class="form-control" />
                                             </td>
-                                            <td><input type="number" id="cantidad" class="form-control"
-                                                    (change)="onChangeCantidad()" /></td>
-                                            <td><input type="number" id="precio" class="form-control"
-                                                    (change)="onChangeCantidad()" /></td>
-                                            <td><input type="number" id="subtotal" value="{{subtotal}}"
+                                            <td><input type="number" id="gravado_10" class="form-control"
+                                                    (change)="onChange10()" /></td>
+                                            <td><input type="number" id="iva_10" value="{{iva10}}"
                                                     class="form-control" disabled /></td>
-                                                    <td><input type="number" id="precio" class="form-control"
-                                                        (change)="onChangeCantidad()" /></td>
-                                                <td><input type="number" id="subtotal" value="{{subtotal}}"
-                                                        class="form-control" disabled /></td>
+                                            <td><input type="number" id="gravado_5" class="form-control"
+                                                    (change)="onChange5()" /></td>
+                                            <td><input type="number" id="iva_5" value="{{iva5}}"
+                                                    class="form-control" disabled /></td>
+                                            <td><input type="number" id="exento" class="form-control"
+                                                    (change)="onChangeCantidad()" /></td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -25,6 +25,8 @@ export class FacturaCompraComponent implements OnInit {
 
   // El subtotal calculado
   public subtotal = 0;
+  public iva10 = 0;
+  public iva5 = 0;
 
   constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
@@ -59,6 +61,17 @@ export class FacturaCompraComponent implements OnInit {
   onChangeCondicion(value: any) {
     this.condicion = value;
     console.log(this.condicion);
+  }
+
+  onChange10() {
+    const gravado10 = parseInt((document.getElementById("gravado_10") as HTMLInputElement).value);
+
+    //this.iva10 = gravado10 / 11;
+    this.iva10 = Math.round((gravado10 / 11) * 1e0) / 1e0;;
+  }
+
+  onChange5() {
+    
   }
 
   // Calcula el subtotal al modificar el monto o el precio
