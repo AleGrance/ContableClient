@@ -1,42 +1,44 @@
-<table class="table table-sm">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">RUC del Informante</th>
-            <th scope="col">Nombre o Razón Social del Informante</th>
-            <th scope="col">RUC / N° de Identificación del Informado</th>
-            <th scope="col">Nombre del proveedor</th>
-            <th scope="col">Fecha de Emisión</th>
-            <th scope="col">Condición de la Operación</th>
-            <th scope="col">Número de comprobante</th>
-            <th scope="col">Gavado 10%</th>
-            <th scope="col">IVA 10%</th>
-            <th scope="col">Gravado 5%</th>
-            <th scope="col">IVA 5%</th>
-            <th scope="col">Exento</th>
-            <th scope="col">Total Comprobante</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of cabecerasCompra">
-            <th scope="row">{{contribuyenteEncontrado.ruc_contribuyente}}</th>
-            <td>{{contribuyenteEncontrado.razon_social_contribuyente}}</td>
-            <td>{{item.Proveedor.ruc_proveedor}}</td>
-            <td>{{item.Proveedor.nom_proveedor}}</td>
-            <td>{{item.fecha_factura_compra}}</td>
-            <td>{{item.condicion_venta_compra}}</td>
-            <td>{{item.nro_factura_compra}}</td>
-            <td>{{item.monto_gravado_10}}</td>
-            <td>{{item.iva_10}}</td>
-            <td>{{item.monto_gravado_5}}</td>
-            <td>{{item.iva_5}}</td>
-            <td>{{item.exento}}</td>
-            <td class="text-right">{{item.total_compra}}</td>
-        </tr>
-        <a href="" class="float">
-            <i class="fa fa-file-excel-o my-float"></i>
-        </a>
-        <a href="" class="float2">
-            <i class="fa fa-file-pdf-o my-float"></i>
-        </a>
-    </tbody>
-</table>
+<div class="table-responsive-xl">
+    <table class="table table-sm table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">RUC del Informante</th>
+                <th scope="col">Nombre o Razón Social del Informante</th>
+                <th scope="col">RUC / N° de Identificación del Informado</th>
+                <th scope="col">Nombre del proveedor</th>
+                <th scope="col">Fecha de Emisión</th>
+                <th scope="col">Condición de la Operación</th>
+                <th scope="col">Número de comprobante</th>
+                <th scope="col">Gavado 10%</th>
+                <th scope="col">IVA 10%</th>
+                <th scope="col">Gravado 5%</th>
+                <th scope="col">IVA 5%</th>
+                <th scope="col">Exento</th>
+                <th scope="col">Total Comprobante</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cabecerasCompra">
+                <th scope="row">{{contribuyenteEncontrado.ruc_contribuyente}}</th>
+                <td>{{contribuyenteEncontrado.razon_social_contribuyente}}</td>
+                <td>{{item.Proveedor.ruc_proveedor}}</td>
+                <td>{{item.Proveedor.nom_proveedor}}</td>
+                <td>{{item.fecha_factura_compra}}</td>
+                <td>{{item.condicion_venta_compra}}</td>
+                <td>{{item.nro_factura_compra}}</td>
+                <td>{{item.monto_gravado_10}}</td>
+                <td>{{item.iva_10}}</td>
+                <td>{{item.monto_gravado_5}}</td>
+                <td>{{item.iva_5}}</td>
+                <td>{{item.exento}}</td>
+                <td class="text-right">{{item.total_compra}}</td>
+            </tr>
+            <a href="" class="float">
+                <i class="fa fa-file-excel-o my-float"></i>
+            </a>
+            <a href="" class="float2">
+                <i class="fa fa-file-pdf-o my-float"></i>
+            </a>
+        </tbody>
+    </table>
+</div>
