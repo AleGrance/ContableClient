@@ -118,9 +118,9 @@ export class FacturaCompraComponent implements OnInit {
     //Objeto detalle
     const detalleCompra = {
       descripcion_detalle_compra: descripcion,
-      cant_item_detalle_compra: 0,
+      cant_item_detalle_compra: 1,
       subtotal_detalle_compra: this.totalComprobante,
-      precio_detalle_compra: 0,
+      precio_detalle_compra: this.totalComprobante,
       nro_factura_compra: nrofactura
     }
 
@@ -149,9 +149,5 @@ export class FacturaCompraComponent implements OnInit {
       }, error => {
         console.log('Si hay error en el post: ', error);
       })
-
-
-
   }
-
 }
