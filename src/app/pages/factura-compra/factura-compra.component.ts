@@ -23,10 +23,14 @@ export class FacturaCompraComponent implements OnInit {
   // La condicion en una variable
   public condicion: any;
 
-  // El subtotal calculado
-  public subtotal = 0;
+  // El total calculado
+  public totalComprobante = 0;
+  public totalIva = 0;
+  public gravado10 = 0;
   public iva10 = 0;
+  public gravado5 = 0;
   public iva5 = 0;
+  public exento = 0;
 
   constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
@@ -63,23 +67,24 @@ export class FacturaCompraComponent implements OnInit {
     console.log(this.condicion);
   }
 
+  // Se calcula el IVA 10%
   onChange10() {
-    const gravado10 = parseInt((document.getElementById("gravado_10") as HTMLInputElement).value);
+    this.gravado10 = parseInt((document.getElementById("gravado_10") as HTMLInputElement).value);
+    this.iva10 = Math.round((this.gravado10 / 11) * 1e0) / 1e0;;
 
-    //this.iva10 = gravado10 / 11;
-    this.iva10 = Math.round((gravado10 / 11) * 1e0) / 1e0;;
+    // Se calcula el total comprobante y el total IVA
+    this.totalComprobante = this.gravado10 + this.gravado5;
+    this.totalIva = this.iva10 + this.iva5;
   }
 
+  // Se calcula el IVA 5%
   onChange5() {
-    
-  }
+    this.gravado5 = parseInt((document.getElementById("gravado_5") as HTMLInputElement).value);
+    this.iva5 = Math.round((this.gravado5 / 22) * 1e0) / 1e0;;
 
-  // Calcula el subtotal al modificar el monto o el precio
-  onChangeCantidad() {
-    const cantidad = parseInt((document.getElementById("cantidad") as HTMLInputElement).value);
-    const precio = parseInt((document.getElementById("precio") as HTMLInputElement).value);
-
-    this.subtotal = cantidad * precio;
+    // Se calcula el total comprobante y el total IVA
+    this.totalComprobante = this.gravado10 + this.gravado5;
+    this.totalIva = this.iva10 + this.iva5;
   }
 
   // Guardar los cambios
@@ -87,18 +92,24 @@ export class FacturaCompraComponent implements OnInit {
     // Datos para la cabecera
     const nrofactura = (document.getElementById("nro") as HTMLInputElement).value;
     const fecha = (document.getElementById("fecha") as HTMLInputElement).value;
+    this.exento = parseInt((document.getElementById("exento") as HTMLInputElement).value);
 
     //Datos para el detalle
     const descripcion = (document.getElementById("descripcion") as HTMLInputElement).value;
-    const cantidad = (document.getElementById("cantidad") as HTMLInputElement).value;
-    const precio = (document.getElementById("precio") as HTMLInputElement).value;
+    //const cantidad = (document.getElementById("cantidad") as HTMLInputElement).value;
+    //const precio = (document.getElementById("precio") as HTMLInputElement).value;
 
     // Objeto cabecera
     const cabeceraCompra = {
       nro_factura_compra: nrofactura,
       condicion_venta_compra: this.condicion,
       fecha_factura_compra: fecha,
-      total_compra: this.subtotal,
+      total_compra: this.totalComprobante,
+      monto_gravado_10: this.gravado10,
+      iva_10: this.iva10,
+      monto_gravado_5: this.gravado5,
+      iva_5: this.iva5,
+      exento: this.exento,
       // Campos relacionados
       ContribuyenteIdContribuyente: this.contribuyenteId,
       ProveedorIdProveedor: this.proveedorId
@@ -107,9 +118,9 @@ export class FacturaCompraComponent implements OnInit {
     //Objeto detalle
     const detalleCompra = {
       descripcion_detalle_compra: descripcion,
-      cant_item_detalle_compra: cantidad,
-      subtotal_detalle_compra: this.subtotal,
-      precio_detalle_compra: precio,
+      cant_item_detalle_compra: 0,
+      subtotal_detalle_compra: this.totalComprobante,
+      precio_detalle_compra: 0,
       nro_factura_compra: nrofactura
     }
 
@@ -137,7 +148,7 @@ export class FacturaCompraComponent implements OnInit {
         }
       }, error => {
         console.log('Si hay error en el post: ', error);
-      });
+      })
 
 
 

@@ -86,20 +86,39 @@
                                             </td>
                                             <td><input type="number" id="gravado_10" class="form-control"
                                                     (change)="onChange10()" /></td>
-                                            <td><input type="number" id="iva_10" value="{{iva10}}"
-                                                    class="form-control" disabled /></td>
+                                            <td><input type="number" id="iva_10" value="{{iva10}}" class="form-control"
+                                                    disabled /></td>
                                             <td><input type="number" id="gravado_5" class="form-control"
                                                     (change)="onChange5()" /></td>
-                                            <td><input type="number" id="iva_5" value="{{iva5}}"
-                                                    class="form-control" disabled /></td>
-                                            <td><input type="number" id="exento" class="form-control"
-                                                    (change)="onChangeCantidad()" /></td>
+                                            <td><input type="number" id="iva_5" value="{{iva5}}" class="form-control"
+                                                    disabled /></td>
+                                            <td><input type="number" id="exento" value="{{exento}}"
+                                                    class="form-control" /></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
 
                             <div class="row">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-md-10 text-right">
+                                                <strong>Total IVA</strong>
+                                            </td>
+                                            <td class="col-md-2 text-left">Gs. {{totalIva}}</td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td class="col-md-10 text-right">
+                                                <strong>Total Comprobante</strong>
+                                            </td>
+                                            <td class="col-md-2 text-left">
+                                                <strong>Gs. {{totalComprobante}}</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 <div class="col-md-6 margintop">
                                     <!-- <button type="button" class="btn btn-primary" (click)="add()">Add item</button>-->
                                     <button type="button" class="btn btn-primary" (click)="grabar()">Grabar</button>
