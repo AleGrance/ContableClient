@@ -3,7 +3,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import * as XLSX from 'xlsx'; 
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-reporte-compra',
@@ -20,7 +20,7 @@ export class ReporteCompraComponent implements OnInit {
   public cabecerasCompra: any;
 
   // Excel file
-  public fileName= 'ExcelSheet.xlsx';
+  public fileName = '';
 
   constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
@@ -36,8 +36,8 @@ export class ReporteCompraComponent implements OnInit {
       }))
       .subscribe()
 
-      // Consulta las cabeceras segun el id del contribuyente
-      this.api.get('cabecera_compra/contribuyente/' + this.contribuyenteId)
+    // Consulta las cabeceras segun el id del contribuyente
+    this.api.get('cabecera_compra/contribuyente/' + this.contribuyenteId)
       .pipe(map(data => {
         this.cabecerasCompra = data;
         //console.log("El contribuyente es: ", this.cabecerasCompra);
@@ -46,22 +46,19 @@ export class ReporteCompraComponent implements OnInit {
   }
 
   // Export to excel
-  exportexcel() {
-    console.log('Hola');
+  exportExcel() {
+    this.fileName = 'Reporte de compras ' + this.contribuyenteEncontrado.razon_social_contribuyente + '.xlsx';
 
-    {
-      /* table id is passed over here */   
-      let element = document.getElementById('excel-table'); 
-      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+    /* table id is passed over here */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-      /* generate workbook and add the worksheet */
-      const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-      /* save to file */
-      XLSX.writeFile(wb, this.fileName);
-     
-   }
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
   }
 
 }

@@ -32,14 +32,8 @@
                 <td>{{item.iva_5}}</td>
                 <td>{{item.exento}}</td>
                 <td class="text-right">{{item.total_compra}}</td>
-            </tr>
-            <a href="" class="float">
-                <i class="fa fa-file-excel-o my-float"></i>
-            </a>
-            <a href="" class="float2">
-                <i class="fa fa-file-pdf-o my-float"></i>
-            </a>
-            <button class="btn btn-primary" (click)="exportexcel()">Excel</button>
+            </tr>    
+            <button class="float" (click)="exportExcel()"><img class="excel-icon" src="../../../assets/excel.ico" alt="icon"></button>
         </tbody>
     </table>
 </div>
