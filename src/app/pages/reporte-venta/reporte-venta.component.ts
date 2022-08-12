@@ -3,6 +3,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-reporte-venta',
@@ -17,6 +19,9 @@ export class ReporteVentaComponent implements OnInit {
 
   // Listado de las cabecera de compra segun el contribuyente seleccionado
   public cabecerasVenta: any;
+
+  // Excel file
+  public fileName = '';
 
   constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
@@ -36,9 +41,25 @@ export class ReporteVentaComponent implements OnInit {
       this.api.get('cabecera_venta/contribuyente/' + this.contribuyenteId)
       .pipe(map(data => {
         this.cabecerasVenta = data;
-        console.log("El contribuyente es: ", this.cabecerasVenta);
+        //console.log("El contribuyente es: ", this.cabecerasVenta);
       }))
       .subscribe()
+  }
+
+  // Export to excel
+  exportExcel() {
+    this.fileName = 'Reporte de ventas ' + this.contribuyenteEncontrado.razon_social_contribuyente + '.xlsx';
+
+    /* table id is passed over here */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
   }
 
 }

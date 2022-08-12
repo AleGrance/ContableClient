@@ -4,26 +4,25 @@
 	height:60px;
 	bottom:40px;
 	right:40px;
-	background-color:rgb(6, 167, 127);
-	color:#FFF;
-	border-radius:50px;
+	background-color: white;
+	border: 2px solid white;
+	border-radius: 50px;
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
+	transition-duration: 0.4s;
+	opacity: 0.5;
 }
-
-.float2{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:110px;
+.float:hover {
+	background-color: white;
+	border: 2px solid white;
+	opacity: 1;
+  }
+  .float:focus {
+	outline: 0;
+  }
+  .excel-icon {
+	width:30px;
+	height:30px;
+	bottom:40px;
 	right:40px;
-	background-color:rgb(204, 48, 0);
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
-}
-
-.my-float{
-	margin-top:22px;
-}
+  }
