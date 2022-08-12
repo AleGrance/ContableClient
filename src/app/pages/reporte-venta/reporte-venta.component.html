@@ -8,6 +8,11 @@
             <th scope="col">Fecha de Emisión</th>
             <th scope="col">Condición de la Operación</th>
             <th scope="col">Número de Comprobante</th>
+            <th scope="col">Gavado 10%</th>
+            <th scope="col">IVA 10%</th>
+            <th scope="col">Gravado 5%</th>
+            <th scope="col">IVA 5%</th>
+            <th scope="col">Exento</th>
             <th scope="col">Total Comprobante</th>
         </tr>
     </thead>
@@ -20,8 +25,14 @@
             <td>{{item.fecha_factura_venta}}</td>
             <td>{{item.condicion_venta_venta}}</td>
             <td>{{item.nro_factura_venta}}</td>
+            <td>{{item.monto_gravado_10}}</td>
+            <td>{{item.iva_10}}</td>
+            <td>{{item.monto_gravado_5}}</td>
+            <td>{{item.iva_5}}</td>
+            <td>{{item.exento}}</td>
             <td>{{item.total_venta}}</td>
         </tr>
-        <button class="float" (click)="exportExcel()"><img class="excel-icon" src="../../../assets/excel.ico" alt="icon"></button>
+        <button class="float" (click)="exportExcel()"><img class="excel-icon" src="../../../assets/excel.ico"
+                alt="icon"></button>
     </tbody>
 </table>
