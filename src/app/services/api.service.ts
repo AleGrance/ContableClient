@@ -7,7 +7,9 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   url: string = 'http://localhost:3000';
-
+  // AWS server
+  //url: string = 'http://54.235.55.225:3000';
+  
   //prueba = 'prueba';
 
   constructor(public http: HttpClient) { }

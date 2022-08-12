@@ -1,5 +1,5 @@
 <div class="table-responsive-xl">
-    <table class="table table-sm table-hover table-bordered">
+    <table id="excel-table" class="table table-sm table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">RUC del Informante</th>
@@ -39,6 +39,7 @@
             <a href="" class="float2">
                 <i class="fa fa-file-pdf-o my-float"></i>
             </a>
+            <button class="btn btn-primary" (click)="exportexcel()">Excel</button>
         </tbody>
     </table>
 </div>
