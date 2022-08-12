@@ -104,7 +104,7 @@ export class ContribuyenteComponent implements OnInit {
     this.api.get('contribuyente')
       .pipe(map(data => {
         this.contribuyentes = data;
-        console.log(this.contribuyentes);
+        //console.log(this.contribuyentes);
       }))
       .subscribe()
   }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client';
+
+  constructor(public api: ApiService) {
+
+  }
+
+  ngOnInit() {
+    this.title = this.api.url;
+  }
 }
