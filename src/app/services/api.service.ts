@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
 
-  url: string = 'http://localhost:3000';
+  //url: string = 'http://localhost:3000';
   // AWS server
   //url: string = 'https://54.163.242.1:3000';
-  //url: string = 'http://54.163.242.1:3000';
+  url: string = 'http://54.163.242.1:3000';
   
   //prueba = 'prueba';
 
