@@ -59,6 +59,15 @@ export class FacturaVentaComponent implements OnInit {
     this.clienteId = parseInt(id);
   }
 
+  // Al escribir el numero de factura
+  addHyphen(event: any) {
+    let elemento = (document.getElementById(event.target.id) as HTMLInputElement).value;
+  
+    if (event.key != 'Backspace' && (elemento.length === 3 || elemento.length === 7)) {
+      (document.getElementById(event.target.id) as HTMLInputElement).value += '-';
+    }
+  }
+
   // Al seleccionar la condicion
   onChangeCondicion(value: any) {
     this.condicion = value;
