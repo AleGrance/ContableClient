@@ -71,7 +71,7 @@ export class FacturaVentaComponent implements OnInit {
     this.iva10 = Math.round((this.gravado10 / 11) * 1e0) / 1e0;;
 
     // Se calcula el total comprobante y el total IVA
-    this.totalComprobante = this.gravado10 + this.gravado5;
+    this.totalComprobante = this.gravado10 + this.gravado5 + this.exento;
     this.totalIva = this.iva10 + this.iva5;
   }
 
@@ -81,8 +81,13 @@ export class FacturaVentaComponent implements OnInit {
     this.iva5 = Math.round((this.gravado5 / 22) * 1e0) / 1e0;;
 
     // Se calcula el total comprobante y el total IVA
-    this.totalComprobante = this.gravado10 + this.gravado5;
+    this.totalComprobante = this.gravado10 + this.gravado5 + this.exento;
     this.totalIva = this.iva10 + this.iva5;
+  }
+
+  onChangeExento() {
+    this.exento = parseInt((document.getElementById("exento") as HTMLInputElement).value);
+    this.totalComprobante = this.gravado10 + this.gravado5 + this.exento;
   }
 
   // Guardar los cambios

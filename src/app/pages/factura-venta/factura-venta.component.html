@@ -92,7 +92,7 @@
                                                     (change)="onChange5()" /></td>
                                             <td><input type="number" id="iva_5" value="{{iva5}}" class="form-control"
                                                     disabled /></td>
-                                            <td><input type="number" id="exento" value="{{exento}}"
+                                            <td><input type="number" id="exento" (change)="onChangeExento()" value="{{exento}}"
                                                     class="form-control" /></td>
                                         </tr>
                                     </tbody>
