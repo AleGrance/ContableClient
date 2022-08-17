@@ -23,15 +23,15 @@
                 <td>{{contribuyenteEncontrado.razon_social_contribuyente}}</td>
                 <td>{{item.Proveedor.ruc_proveedor}}</td>
                 <td>{{item.Proveedor.nom_proveedor}}</td>
-                <td>{{item.fecha_factura_compra}}</td>
+                <td>{{item.fecha_factura_compra | date: 'dd-MM-YYYY'}}</td>
                 <td>{{item.condicion_venta_compra}}</td>
                 <td>{{item.nro_factura_compra}}</td>
-                <td>{{item.monto_gravado_10 | currency:'':'':'1.0-0'}} Gs.</td>
-                <td>{{item.iva_10 | currency:'':'':'1.0-0'}} Gs.</td>
-                <td>{{item.monto_gravado_5 | currency:'':'':'1.0-0'}} Gs.</td>
-                <td>{{item.iva_5 | currency:'':'':'1.0-0'}} Gs.</td>
-                <td>{{item.exento | currency:'':'':'1.0-0'}} Gs.</td>
-                <td class="text-right">{{item.total_compra | currency:'':'':'1.0-0'}} Gs.</td>
+                <td>{{item.monto_gravado_10 | currency:'':'':'1.0-0'}}</td>
+                <td>{{item.iva_10 | currency:'':'':'1.0-0'}}</td>
+                <td>{{item.monto_gravado_5 | currency:'':'':'1.0-0'}}</td>
+                <td>{{item.iva_5 | currency:'':'':'1.0-0'}}</td>
+                <td>{{item.exento | currency:'':'':'1.0-0'}}</td>
+                <td class="text-right">{{item.total_compra | currency:'':'':'1.0-0'}}</td>
             </tr>    
             <button class="float" (click)="exportExcel()"><img class="excel-icon" src="../../../assets/excel.ico" alt="icon"></button>
         </tbody>
