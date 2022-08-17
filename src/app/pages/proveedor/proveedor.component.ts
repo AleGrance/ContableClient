@@ -19,7 +19,7 @@ export class ProveedorComponent implements OnInit {
   public proveedorNuevo = {
     nom_proveedor: 'Nombre',
     ruc_proveedor: '12345',
-    timbrado_proveedor: '12345',
+    timbrado_proveedor: '12345678',
   };
 
   public proveedorEditarForm: any;
@@ -47,7 +47,7 @@ export class ProveedorComponent implements OnInit {
       ]),
       timbrado: new FormControl(this.proveedorNuevo.timbrado_proveedor, [
         Validators.required,
-        Validators.minLength(5)
+        Validators.minLength(8)
       ])
     });
 

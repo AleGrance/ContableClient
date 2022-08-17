@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Timbrado</label>
                             <input type="text" class="form-control" formControlName="timbrado" id="timbrado"
-                                placeholder="Ingrese timbrado">
+                                placeholder="Ingrese timbrado" maxlength="8">
 
                             <div *ngIf="timbrado.invalid && (timbrado.dirty || timbrado.touched)"
                                 class="alert alert-danger">
@@ -58,7 +58,7 @@
                                     Campo requerido.
                                 </div>
                                 <div *ngIf="timbrado.errors?.minlength">
-                                    Debe tener al menos 4 caraceres.
+                                    Debe tener al menos 8 dígitos.
                                 </div>
                             </div>
                         </div>
