@@ -44,13 +44,11 @@
                                     <label for="">Fecha:</label>
                                     <input id="fecha" type="date" class="form-control">
                                     <label for="">Factura nro:</label>
-                                    <input id="nro" type="text" class="form-control">
+                                    <input id="nro" type="text" class="form-control" maxlength="15" (keyup)="addHyphen($event)">
                                     <label for="">Condición:</label>
                                     <ng-select (change)="onChangeCondicion($event)">
                                         <ng-option value="Contado">Contado</ng-option>
-                                        <ng-option value="Crédito">Crédito 15 días</ng-option>
-                                        <ng-option value="Crédito">Crédito 30 días</ng-option>
-                                        <ng-option value="Crédito">Crédito 90 días</ng-option>
+                                        <ng-option value="Crédito">Crédito</ng-option>
                                     </ng-select>
                                 </div>
 

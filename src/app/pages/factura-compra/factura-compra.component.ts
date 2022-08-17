@@ -61,6 +61,15 @@ export class FacturaCompraComponent implements OnInit {
     //console.log(this.proveedorId);
   }
 
+  // Al escribir el numero de factura
+  addHyphen(event: any) {
+    let elemento = (document.getElementById(event.target.id) as HTMLInputElement).value;
+  
+    if (event.key != 'Backspace' && (elemento.length === 3 || elemento.length === 7)) {
+      (document.getElementById(event.target.id) as HTMLInputElement).value += '-';
+    }
+  }
+
   // Al seleccionar la condicion
   onChangeCondicion(value: any) {
     this.condicion = value;
@@ -80,7 +89,7 @@ export class FacturaCompraComponent implements OnInit {
   // Se calcula el IVA 5%
   onChange5() {
     this.gravado5 = parseInt((document.getElementById("gravado_5") as HTMLInputElement).value);
-    this.iva5 = Math.round((this.gravado5 / 22) * 1e0) / 1e0;;
+    this.iva5 = Math.round((this.gravado5 / 21) * 1e0) / 1e0;;
 
     // Se calcula el total comprobante y el total IVA
     this.totalComprobante = this.gravado10 + this.gravado5 + this.exento;
