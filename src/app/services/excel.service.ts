@@ -46,6 +46,37 @@ export class ExcelService {
     this.saveAsExcelFile(excelBuffer, excelFileName);
   }
 
+  public exportAsExcelFileVenta(json: any[], excelFileName: string, contribuyenteData: any): void {
+    /****************
+    * Let's make some changes in our data
+    */
+    this.mappedJson = json.map(item => {
+      return {
+        "RUC del informante": contribuyenteData.ruc_contribuyente,
+        "Razon Social del informante": contribuyenteData.razon_social_contribuyente,
+        "RUC del informado": item.Cliente.ruc_cliente,
+        "Nombre del cliente": item.Cliente.razon_social_cliente,
+        "Fecha de emisión": item.fecha_factura_venta ? moments(item.fecha_factura_venta).format('DD-MM-YYYY') : 'N/A',
+        "Condición": item.condicion_venta_venta,
+        "Número de comprobante": item.nro_factura_venta,
+        "Gavado 10%": item.monto_gravado_10,
+        "IVA 10%": item.iva_10,
+        "Gravado 5%": item.monto_gravado_5,
+        "IVA 5%": item.iva_5,
+        "Exento": item.exento,
+        "Total comprobante": item.total_venta,
+      }
+    })
+
+    /********************
+    * We passed in our mappedJson after customizing it
+    */
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.mappedJson);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveAsExcelFile(excelBuffer, excelFileName);
+  }
+
   private saveAsExcelFile(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
     /***********

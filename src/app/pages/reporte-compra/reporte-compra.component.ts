@@ -48,6 +48,7 @@ export class ReporteCompraComponent implements OnInit {
       .subscribe()
   }
 
+  // Export to excel
   exportAsXLSX(): void {
    this.excelService.exportAsExcelFile(this.cabecerasCompra, 'Reporte de compras - ' + this.contribuyenteEncontrado.razon_social_contribuyente, this.contribuyenteEncontrado);
   }

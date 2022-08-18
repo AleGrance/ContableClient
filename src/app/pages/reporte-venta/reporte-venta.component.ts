@@ -3,7 +3,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import * as XLSX from 'xlsx';
+import { ExcelService } from '../../services/excel.service';
+
 
 
 @Component({
@@ -23,7 +24,7 @@ export class ReporteVentaComponent implements OnInit {
   // Excel file
   public fileName = '';
 
-  constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService) { }
+  constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService, private excelService: ExcelService) { }
 
   ngOnInit(): void {
     // Primero se obtiene el ID enviado a travez de la ruta
@@ -37,8 +38,8 @@ export class ReporteVentaComponent implements OnInit {
       }))
       .subscribe()
 
-      // Consulta las cabeceras segun el id del contribuyente
-      this.api.get('cabecera_venta/contribuyente/' + this.contribuyenteId)
+    // Consulta las cabeceras segun el id del contribuyente
+    this.api.get('cabecera_venta/contribuyente/' + this.contribuyenteId)
       .pipe(map(data => {
         this.cabecerasVenta = data;
         //console.log("El contribuyente es: ", this.cabecerasVenta);
@@ -47,19 +48,8 @@ export class ReporteVentaComponent implements OnInit {
   }
 
   // Export to excel
-  exportExcel() {
-    this.fileName = 'Reporte de ventas ' + this.contribuyenteEncontrado.razon_social_contribuyente + '.xlsx';
-
-    /* table id is passed over here */
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    /* save to file */
-    XLSX.writeFile(wb, this.fileName);
+  exportAsXLSX(): void {
+    this.excelService.exportAsExcelFileVenta(this.cabecerasVenta, 'Reporte de ventas - ' + this.contribuyenteEncontrado.razon_social_contribuyente, this.contribuyenteEncontrado);
   }
 
 }
