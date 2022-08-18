@@ -21,9 +21,19 @@ export class ExcelService {
     */
     this.mappedJson = json.map(item => {
       return {
-        "RUC del Informante": contribuyenteData.ruc_contribuyente,
-        Ename: item.total_compra,
-        EDate: item.fecha_factura_compra ? moments(item.fecha_factura_compra).format('DD-MM-YYYY') : 'N/A'
+        "RUC del informante": contribuyenteData.ruc_contribuyente,
+        "Razon Social del informante": contribuyenteData.razon_social_contribuyente,
+        "RUC del informado": item.Proveedor.ruc_proveedor,
+        "Nombre del proveedor": item.Proveedor.nom_proveedor,
+        "Fecha de emisión": item.fecha_factura_compra ? moments(item.fecha_factura_compra).format('DD-MM-YYYY') : 'N/A',
+        "Condición": item.condicion_venta_compra,
+        "Número de comprobante": item.nro_factura_compra,
+        "Gavado 10%": item.monto_gravado_10,
+        "IVA 10%": item.iva_10,
+        "Gravado 5%": item.monto_gravado_5,
+        "IVA 5%": item.iva_5,
+        "Exento": item.exento,
+        "Total comprobante": item.total_compra,
       }
     })
 
