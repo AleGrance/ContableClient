@@ -22,15 +22,15 @@
             <td>{{contribuyenteEncontrado.razon_social_contribuyente}}</td>
             <td>{{item.Cliente.ruc_cliente}}</td>
             <td>{{item.Cliente.razon_social_cliente}}</td>
-            <td>{{item.fecha_factura_venta}}</td>
+            <td>{{item.fecha_factura_venta | date: 'dd-MM-YYYY'}}</td>
             <td>{{item.condicion_venta_venta}}</td>
             <td>{{item.nro_factura_venta}}</td>
-            <td>{{item.monto_gravado_10}}</td>
-            <td>{{item.iva_10}}</td>
-            <td>{{item.monto_gravado_5}}</td>
-            <td>{{item.iva_5}}</td>
-            <td>{{item.exento}}</td>
-            <td>{{item.total_venta}}</td>
+            <td>{{item.monto_gravado_10 | currency:'':'':'1.0-0'}}</td>
+            <td>{{item.iva_10 | currency:'':'':'1.0-0'}}</td>
+            <td>{{item.monto_gravado_5 | currency:'':'':'1.0-0'}}</td>
+            <td>{{item.iva_5 | currency:'':'':'1.0-0'}}</td>
+            <td>{{item.exento | currency:'':'':'1.0-0'}}</td>
+            <td>{{item.total_venta | currency:'':'':'1.0-0'}}</td>
         </tr>
         <button class="float" (click)="exportAsXLSX()"><img class="excel-icon" src="../../../assets/excel.ico"
                 alt="icon"></button>
