@@ -64,7 +64,7 @@ export class FacturaCompraComponent implements OnInit {
   // Al escribir el numero de factura
   addHyphen(event: any) {
     let elemento = (document.getElementById(event.target.id) as HTMLInputElement).value;
-  
+
     if (event.key != 'Backspace' && (elemento.length === 3 || elemento.length === 7)) {
       (document.getElementById(event.target.id) as HTMLInputElement).value += '-';
     }
@@ -155,7 +155,7 @@ export class FacturaCompraComponent implements OnInit {
             });
 
           // Llama a la funcion onInit que resetea el formulario
-          this.ngOnInit();
+          this.resetForm();
         } else {
           console.log('result post: ', result);
           this.toastr.warning(result);
@@ -163,5 +163,20 @@ export class FacturaCompraComponent implements OnInit {
       }, error => {
         console.log('Si hay error en el post: ', error);
       })
+  }
+
+  resetForm() {
+    (document.getElementById("proveedor") as HTMLInputElement).value = "";
+    (document.getElementById("fecha") as HTMLInputElement).value = "";
+    (document.getElementById("nro") as HTMLInputElement).value = "";
+    // Condicion no se puede
+    (document.getElementById("descripcion") as HTMLInputElement).value = "";
+    this.totalComprobante = 0;
+    this.totalIva = 0;
+    this.gravado10 = 0;
+    this.iva10 = 0;
+    this.gravado5 = 0;
+    this.iva5 = 0;
+    this.exento = 0;
   }
 }

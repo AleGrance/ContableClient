@@ -52,41 +52,4 @@ export class ReporteCompraComponent implements OnInit {
   exportAsXLSX(): void {
    this.excelService.exportAsExcelFile(this.cabecerasCompra, 'Reporte de compras - ' + this.contribuyenteEncontrado.razon_social_contribuyente, this.contribuyenteEncontrado);
   }
-
-  // Export to excel - NO FUNCIONA BIEN, LE CAMBIA EL FORMATO A LAS FECHAS Y AL NRO DE FACTURA === Date pipe can only be used to format data within the DOM so it won't work for the excel file when download
-  /*exportExcel() {
-    this.fileName = 'Reporte de compras ' + this.contribuyenteEncontrado.razon_social_contribuyente + '.xlsx';
-
-    // table id is passed over here
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    // generate workbook and add the worksheet
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    // save to file
-    XLSX.writeFile(wb, this.fileName);
-  }*/
-
-  /*exportExcel() {
-    if (this.cabecerasCompra.length > 0) {
-      import("xlsx").then(xlsx => {
-        const worksheet = xlsx.utils.json_to_sheet(this.cabecerasCompra);
-        const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-        const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-        this.saveAsExcelFile(excelBuffer, "ExportExcel");
-      });
-    }
-  }
-
-  saveAsExcelFile(buffer: any, fileName: string): void {
-    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-    let EXCEL_EXTENSION = '.xlsx';
-    const data: Blob = new Blob([buffer], {
-      type: EXCEL_TYPE
-    });
-    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
-  }*/
-
 }

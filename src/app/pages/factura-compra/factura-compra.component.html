@@ -27,7 +27,7 @@
                                     <p class="lead">Datos del proveedor</p>
                                     <label for="">Razon social:</label>
                                     <ng-select (change)="onChangeProveedor($event)">
-                                        <ng-option *ngFor="let p of proveedores" value="{{p.id_proveedor}}">
+                                        <ng-option *ngFor="let p of proveedores" id="proveedor" value="{{p.id_proveedor}}">
                                             {{p.nom_proveedor}}</ng-option>
                                     </ng-select>
                                 </div>
