@@ -6,12 +6,15 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
 
-  url: string = 'http://localhost:3000';
+  //url: string = 'http://localhost:3000';
   // AWS server
-  //url: string = 'https://54.163.242.1:3000';
-  //url: string = 'http://54.163.242.1:3000';
-  
-  //prueba = 'prueba';
+  url: string = 'http://54.163.242.1:3000';
+
+  // Free APIs
+  //url: string = 'https://pokeapi.co/api/v2';
+  //url: string = 'https://swapi.dev/api'; // desde el client pasar: people, planets, vehicles, starships
+  //url: string = 'https://parallelum.com.br/fipe/api/v1'; // desde el client cambiar "carros" para "motos" ou "caminhoes"
+  //url: string = 'https://inshorts.deta.dev/news?category'; // Usar = en lugar de / ... desde el client completar con tecnology o world
 
   constructor(public http: HttpClient) { }
 

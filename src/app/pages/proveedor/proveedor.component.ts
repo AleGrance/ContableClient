@@ -72,6 +72,14 @@ export class ProveedorComponent implements OnInit {
         this.proveedores = data;
       }))
       .subscribe()
+
+    // Trae datos del api
+    /*this.api.get('people')
+      .pipe(map(data => {
+        this.proveedores = data;
+        console.log('Pokemones: ', this.proveedores);
+      }))
+      .subscribe()*/
   }
 
   // Validaciones para Add proveedor
