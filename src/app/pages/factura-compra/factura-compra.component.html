@@ -14,60 +14,56 @@
 </ul>
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="compras" role="tabpanel" aria-labelledby="compras-tab">
-
-
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default invoice" id="invoice">
                         <div class="panel-body">
-                            <div class="row border" style="margin-bottom: 10px; margin-top: 10px;">
-
-                                <div class="col-md-4">
-                                    <p class="lead">Datos del proveedor</p>
-                                    <label for="">Razon social:</label>
-                                    <ng-select (change)="onChangeProveedor($event)">
-                                        <ng-option *ngFor="let p of proveedores" id="proveedor" value="{{p.id_proveedor}}">
-                                            {{p.nom_proveedor}}</ng-option>
-                                    </ng-select>
+                            <form (ngSubmit)="grabar()">
+                                <div class="row border" style="margin-bottom: 10px; margin-top: 10px;">
+                                    <div class="col-md-4">
+                                        <p class="lead">Datos del proveedor</p>
+                                        <label for="">Razon social:</label>
+                                        <ng-select (change)="onChangeProveedor($event)">
+                                            <ng-option *ngFor="let p of proveedores" id="proveedor"
+                                                value="{{p.id_proveedor}}">
+                                                {{p.nom_proveedor}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="lead marginbottom">Datos del contribuyente</p>
+                                        <p>ID: {{contribuyenteEncontrado.id_contribuyente}}</p>
+                                        <p>Razon Social: {{contribuyenteEncontrado.razon_social_contribuyente}}</p>
+                                        <p>RUC: {{contribuyenteEncontrado.ruc_contribuyente}}</p>
+                                    </div>
+                                    <div class="col-md-3" style="margin-bottom: 10px;">
+                                        <p class="lead marginbottom">Detalles de pago</p>
+                                        <label for="">Fecha:</label>
+                                        <input id="fecha" type="date" class="form-control">
+                                        <label for="">Factura nro:</label>
+                                        <input id="nro" type="text" class="form-control" maxlength="15"
+                                            (keyup)="addHyphen($event)">
+                                        <label for="">Condición:</label>
+                                        <ng-select (change)="onChangeCondicion($event)">
+                                            <ng-option value="Contado">Contado</ng-option>
+                                            <ng-option value="Crédito">Crédito</ng-option>
+                                        </ng-select>
+                                    </div>
                                 </div>
-
-                                <div class="col-md-5">
-                                    <p class="lead marginbottom">Datos del contribuyente</p>
-                                    <p>ID: {{contribuyenteEncontrado.id_contribuyente}}</p>
-                                    <p>Razon Social: {{contribuyenteEncontrado.razon_social_contribuyente}}</p>
-                                    <p>RUC: {{contribuyenteEncontrado.ruc_contribuyente}}</p>
-                                </div>
-
-                                <div class="col-md-3" style="margin-bottom: 10px;">
-                                    <p class="lead marginbottom">Detalles de pago</p>
-                                    <label for="">Fecha:</label>
-                                    <input id="fecha" type="date" class="form-control">
-                                    <label for="">Factura nro:</label>
-                                    <input id="nro" type="text" class="form-control" maxlength="15" (keyup)="addHyphen($event)">
-                                    <label for="">Condición:</label>
-                                    <ng-select (change)="onChangeCondicion($event)">
-                                        <ng-option value="Contado">Contado</ng-option>
-                                        <ng-option value="Crédito">Crédito</ng-option>
-                                    </ng-select>
-                                </div>
-
-                            </div>
-
-                            <div class="row table-row">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th style="width:25%">Descripción</th>
-                                            <th class="" style="width:15%">Gravado 10%</th>
-                                            <th class="" style="width:15%">IVA 10%</th>
-                                            <th class="" style="width:15%">Gravado 5%</th>
-                                            <th class="" style="width:15%">IVA 5%</th>
-                                            <th class="" style="width:15%">Exento</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!--<tr *ngFor="let item of invoice.items; let i = index">
+                                <div class="row table-row">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:25%">Descripción</th>
+                                                <th class="" style="width:15%">Gravado 10%</th>
+                                                <th class="" style="width:15%">IVA 10%</th>
+                                                <th class="" style="width:15%">Gravado 5%</th>
+                                                <th class="" style="width:15%">IVA 5%</th>
+                                                <th class="" style="width:15%">Exento</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!--<tr *ngFor="let item of invoice.items; let i = index">
                                             <td><input type="text" value="{{item.description}}" class="form-control" />
                                             </td>
                                             <td><input type="number" value="{{item.qty}}" class="form-control"
@@ -79,57 +75,52 @@
                                                     (click)="remove(i)">Eliminar</button></td>
                                         </tr>-->
 
-                                        <tr>
-                                            <td><input type="text" id="descripcion" class="form-control" />
-                                            </td>
-                                            <td><input type="number" id="gravado_10" class="form-control"
-                                                    (change)="onChange10()" /></td>
-                                            <td><input type="number" id="iva_10" value="{{iva10}}" class="form-control"
-                                                    disabled /></td>
-                                            <td><input type="number" id="gravado_5" class="form-control"
-                                                    (change)="onChange5()" /></td>
-                                            <td><input type="number" id="iva_5" value="{{iva5}}" class="form-control"
-                                                    disabled /></td>
-                                            <td><input type="number" id="exento" (change)="onChangeExento()" value="{{exento}}"
-                                                    class="form-control" /></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="row">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="col-md-10 text-right">
-                                                <strong>Total IVA</strong>
-                                            </td>
-                                            <td class="col-md-2 text-left">Gs. {{totalIva}}</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td class="col-md-10 text-right">
-                                                <strong>Total Comprobante</strong>
-                                            </td>
-                                            <td class="col-md-2 text-left">
-                                                <strong>Gs. {{totalComprobante}}</strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="col-md-6 margintop">
-                                    <!-- <button type="button" class="btn btn-primary" (click)="add()">Add item</button>-->
-                                    <button type="button" class="btn btn-primary" (click)="grabar()">Grabar</button>
+                                            <tr>
+                                                <td><input type="text" id="descripcion" class="form-control" />
+                                                </td>
+                                                <td><input type="number" id="gravado_10" class="form-control"
+                                                        (change)="onChange10()" /></td>
+                                                <td><input type="number" id="iva_10" value="{{iva10}}"
+                                                        class="form-control" disabled /></td>
+                                                <td><input type="number" id="gravado_5" class="form-control"
+                                                        (change)="onChange5()" /></td>
+                                                <td><input type="number" id="iva_5" value="{{iva5}}"
+                                                        class="form-control" disabled /></td>
+                                                <td><input type="number" id="exento" (change)="onChangeExento()"
+                                                        value="{{exento}}" class="form-control" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </div>
-
+                                <div class="row">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-md-10 text-right">
+                                                    <strong>Total IVA</strong>
+                                                </td>
+                                                <td class="col-md-2 text-left">Gs. {{totalIva}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-10 text-right">
+                                                    <strong>Total Comprobante</strong>
+                                                </td>
+                                                <td class="col-md-2 text-left">
+                                                    <strong>Gs. {{totalComprobante}}</strong>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="col-md-6 margintop">
+                                        <button type="submit" class="btn btn-primary">Grabar</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
     <div class="tab-pane fade" id="vencimientos" role="tabpanel" aria-labelledby="vencimientos-tab">...</div>
     <div class="tab-pane fade" id="abiertos" role="tabpanel" aria-labelledby="abiertos-tab">...</div>

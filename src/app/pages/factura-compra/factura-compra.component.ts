@@ -153,9 +153,6 @@ export class FacturaCompraComponent implements OnInit {
             }, error => {
               console.log('Si hay error en el post: ', error);
             });
-
-          // Llama a la funcion onInit que resetea el formulario
-          this.resetForm();
         } else {
           console.log('result post: ', result);
           this.toastr.warning(result);

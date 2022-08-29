@@ -89,8 +89,10 @@ export class ClienteComponent implements OnInit {
         // Se actualiza la vista html si el result retorna un objeto, significa que inserto en la bd. De lo contrario muestra el mensaje de error que retorna el server
         if (typeof result === 'object') {
           this.toastr.success('Cliente registrado');
-          // Llama a la funcion onInit que resetea el formulario
+          // Llama a la funcion onInit que agrega a la lista el cliente registrado
           this.ngOnInit();
+          // Funcion para resetear el formulario
+          this.clienteForm.reset();
         } else {
           console.log('result post: ', result);
           this.toastr.warning(result);
