@@ -72,6 +72,30 @@ export class FacturaCompraComponent implements OnInit {
       ]),
       condicion: new FormControl("", [
         Validators.required
+      ]),
+      descripcion: new FormControl("", [
+        Validators.required
+      ]),
+      gravado10: new FormControl(this.gravado10, [
+        Validators.required
+      ]),
+      iva10: new FormControl(this.gravado10, [
+        Validators.required
+      ]),
+      gravado5: new FormControl(this.gravado5, [
+        Validators.required
+      ]),
+      iva5: new FormControl(this.gravado5, [
+        Validators.required
+      ]),
+      exento: new FormControl(this.exento, [
+        Validators.required
+      ]),
+      totalIva: new FormControl(this.totalIva, [
+        Validators.required
+      ]),
+      totalComprobante: new FormControl(this.totalComprobante, [
+        Validators.required
       ])
     });
   }
@@ -81,6 +105,12 @@ export class FacturaCompraComponent implements OnInit {
   get date_getter() { return this.facturaForm.get('date'); }
   get nro_getter() { return this.facturaForm.get('nro'); }
   get condicion_getter() { return this.facturaForm.get('condicion'); }
+  get descripcion_getter() { return this.facturaForm.get('descripcion'); }
+  get gravado10_getter() { return this.facturaForm.get('gravado10'); }
+  get iva10_getter() { return this.facturaForm.get('iva10'); }
+  get gravado5_getter() { return this.facturaForm.get('gravado5'); }
+  get iva5_getter() { return this.facturaForm.get('iva5'); }
+  get exento_getter() { return this.facturaForm.get('exento'); }
 
   // Al seleccionar el proveedor se guarda el ID en una variable para enviar a la base de datos
   onChangeProveedor(e: any) {

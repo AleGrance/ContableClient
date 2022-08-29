@@ -27,9 +27,11 @@
                                         <p class="lead">Datos del proveedor</p>
                                         <label for="">Razon social:</label>
                                         <ng-select (change)="onChangeProveedor($event)" formControlName="proveedor">
-                                            <ng-option *ngFor="let p of proveedores" [value]="p.id_proveedor">{{p.nom_proveedor}}</ng-option>
+                                            <ng-option *ngFor="let p of proveedores" [value]="p.id_proveedor">
+                                                {{p.nom_proveedor}}</ng-option>
                                         </ng-select>
-                                        <div *ngIf="proveedor_getter.invalid && (proveedor_getter.dirty || proveedor_getter.touched)" class="alert alert-danger">
+                                        <div *ngIf="proveedor_getter.invalid && (proveedor_getter.dirty || proveedor_getter.touched)"
+                                            class="alert alert-danger">
                                             <div *ngIf="proveedor_getter.errors?.required">
                                                 Campo requerido.
                                             </div>
@@ -48,8 +50,10 @@
                                         <label for="">Fecha:</label>
                                         <input id="fecha" type="date" class="form-control" formControlName="date">
                                         <label for="">Factura nro:</label>
-                                        <input id="nro" type="text" class="form-control" maxlength="15" (keyup)="addHyphen($event)" formControlName="nro">
-                                        <div *ngIf="nro_getter.invalid && (nro_getter.dirty || nro_getter.touched)" class="alert alert-danger">
+                                        <input id="nro" type="text" class="form-control" maxlength="15"
+                                            (keyup)="addHyphen($event)" formControlName="nro">
+                                        <div *ngIf="nro_getter.invalid && (nro_getter.dirty || nro_getter.touched)"
+                                            class="alert alert-danger">
                                             <div *ngIf="nro_getter.errors?.required">
                                                 Campo requerido.
                                             </div>
@@ -62,7 +66,8 @@
                                             <ng-option value="Contado">Contado</ng-option>
                                             <ng-option value="Crédito">Crédito</ng-option>
                                         </ng-select>
-                                        <div *ngIf="condicion_getter.invalid && (condicion_getter.dirty || condicion_getter.touched)" class="alert alert-danger">
+                                        <div *ngIf="condicion_getter.invalid && (condicion_getter.dirty || condicion_getter.touched)"
+                                            class="alert alert-danger">
                                             <div *ngIf="condicion_getter.errors?.required">
                                                 Campo requerido.
                                             </div>
@@ -96,44 +101,44 @@
                                         </tr>-->
 
                                             <tr>
-                                                <td><input type="text" id="descripcion" class="form-control" />
+                                                <td><input type="text" id="descripcion" class="form-control"
+                                                        formControlName="descripcion" />
                                                 </td>
-                                                <td><input type="number" id="gravado_10" value="{{gravado10}}" class="form-control"
-                                                        (keyup)="onChange10()" /></td>
+                                                <td><input type="number" id="gravado_10" value="{{gravado10}}"
+                                                        class="form-control" (keyup)="onChange10()"
+                                                        formControlName="gravado10" /></td>
                                                 <td><input type="number" id="iva_10" value="{{iva10}}"
-                                                        class="form-control" disabled /></td>
-                                                <td><input type="number" id="gravado_5" value="{{gravado5}}"class="form-control"
-                                                        (keyup)="onChange5()" /></td>
+                                                        class="form-control" readonly formControlName="iva10" /></td>
+                                                <td><input type="number" id="gravado_5" value="{{gravado5}}"
+                                                        class="form-control" (keyup)="onChange5()"
+                                                        formControlName="gravado5" /></td>
                                                 <td><input type="number" id="iva_5" value="{{iva5}}"
-                                                        class="form-control" disabled /></td>
+                                                        class="form-control" readonly formControlName="iva5" /></td>
                                                 <td><input type="number" id="exento" (keyup)="onChangeExento()"
-                                                        value="{{exento}}" class="form-control" /></td>
+                                                        value="{{exento}}" class="form-control"
+                                                        formControlName="exento" /></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
+                                <!--Totales-->
+                                <div class="row">
+                                    <label class="col-sm-10 col-form-label text-right">Total IVA:</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" readonly class="form-control-plaintext" value="{{totalIva}}" formControlName="totalIva">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-10 col-form-label text-right">Total Comprobante:</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" readonly class="form-control-plaintext" value="{{totalComprobante}}" formControlName="totalComprobante">
+                                    </div>
+                                </div>
                                 <!--Botones-->
                                 <div class="row">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td class="col-md-10 text-right">
-                                                    <strong>Total IVA</strong>
-                                                </td>
-                                                <td class="col-md-2 text-left">Gs. {{totalIva}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-md-10 text-right">
-                                                    <strong>Total Comprobante</strong>
-                                                </td>
-                                                <td class="col-md-2 text-left">
-                                                    <strong>Gs. {{totalComprobante}}</strong>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="col-md-6 margintop">
-                                        <button type="submit" class="btn btn-primary" (click)="grabar()" [disabled]="facturaForm.invalid">Grabar</button>
+                                    <div class="col-md-12" style="padding-left: 0;">
+                                        <button type="submit" class="btn btn-primary" (click)="grabar()"
+                                            [disabled]="facturaForm.invalid">Grabar</button>
                                     </div>
                                 </div>
                             </form>
