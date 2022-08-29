@@ -19,37 +19,57 @@
                 <div class="col-sm-12">
                     <div class="panel panel-default invoice" id="invoice">
                         <div class="panel-body">
-                            <form (ngSubmit)="grabar()">
+                            <form [formGroup]="facturaForm">
+                                <!--Cabecera-->
                                 <div class="row border" style="margin-bottom: 10px; margin-top: 10px;">
+                                    <!--Datos del proveedor-->
                                     <div class="col-md-4">
                                         <p class="lead">Datos del proveedor</p>
                                         <label for="">Razon social:</label>
-                                        <ng-select (change)="onChangeProveedor($event)">
-                                            <ng-option *ngFor="let p of proveedores" id="proveedor"
-                                                value="{{p.id_proveedor}}">
-                                                {{p.nom_proveedor}}</ng-option>
+                                        <ng-select (change)="onChangeProveedor($event)" formControlName="proveedor">
+                                            <ng-option *ngFor="let p of proveedores" [value]="p.id_proveedor">{{p.nom_proveedor}}</ng-option>
                                         </ng-select>
+                                        <div *ngIf="proveedor_getter.invalid && (proveedor_getter.dirty || proveedor_getter.touched)" class="alert alert-danger">
+                                            <div *ngIf="proveedor_getter.errors?.required">
+                                                Campo requerido.
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!--Datos del contribuyente-->
                                     <div class="col-md-5">
                                         <p class="lead marginbottom">Datos del contribuyente</p>
                                         <p>ID: {{contribuyenteEncontrado.id_contribuyente}}</p>
                                         <p>Razon Social: {{contribuyenteEncontrado.razon_social_contribuyente}}</p>
                                         <p>RUC: {{contribuyenteEncontrado.ruc_contribuyente}}</p>
                                     </div>
+                                    <!--Detalles de pago-->
                                     <div class="col-md-3" style="margin-bottom: 10px;">
                                         <p class="lead marginbottom">Detalles de pago</p>
                                         <label for="">Fecha:</label>
-                                        <input id="fecha" type="date" class="form-control">
+                                        <input id="fecha" type="date" class="form-control" formControlName="date">
                                         <label for="">Factura nro:</label>
-                                        <input id="nro" type="text" class="form-control" maxlength="15"
-                                            (keyup)="addHyphen($event)">
+                                        <input id="nro" type="text" class="form-control" maxlength="15" (keyup)="addHyphen($event)" formControlName="nro">
+                                        <div *ngIf="nro_getter.invalid && (nro_getter.dirty || nro_getter.touched)" class="alert alert-danger">
+                                            <div *ngIf="nro_getter.errors?.required">
+                                                Campo requerido.
+                                            </div>
+                                            <div *ngIf="nro_getter.errors?.minlength">
+                                                Debe tener al menos 13 dígitos.
+                                            </div>
+                                        </div>
                                         <label for="">Condición:</label>
-                                        <ng-select (change)="onChangeCondicion($event)">
+                                        <ng-select (change)="onChangeCondicion($event)" formControlName="condicion">
                                             <ng-option value="Contado">Contado</ng-option>
                                             <ng-option value="Crédito">Crédito</ng-option>
                                         </ng-select>
+                                        <div *ngIf="condicion_getter.invalid && (condicion_getter.dirty || condicion_getter.touched)" class="alert alert-danger">
+                                            <div *ngIf="condicion_getter.errors?.required">
+                                                Campo requerido.
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <!--Detalles-->
                                 <div class="row table-row">
                                     <table class="table table-striped">
                                         <thead>
@@ -92,6 +112,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <!--Botones-->
                                 <div class="row">
                                     <table class="table">
                                         <tbody>
@@ -112,7 +133,7 @@
                                         </tbody>
                                     </table>
                                     <div class="col-md-6 margintop">
-                                        <button type="submit" class="btn btn-primary">Grabar</button>
+                                        <button type="submit" class="btn btn-primary" (click)="grabar()" [disabled]="facturaForm.invalid">Grabar</button>
                                     </div>
                                 </div>
                             </form>

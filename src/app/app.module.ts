@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; //se importa
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +42,7 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     CommonModule,
     //FontAwesomeModule,
+    FormsModule,
     ReactiveFormsModule,
     NgSelectModule,   //se usa la version 7 que es compatible con el angular 12
     HttpClientModule, //se importa

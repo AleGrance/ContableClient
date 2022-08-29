@@ -14,12 +14,6 @@ export class ClienteComponent implements OnInit {
   public clientes: any;
   public clienteForm: any;
 
-  // Para el formulario de crear nuevo cliente
-  public clienteNuevo = {
-    razon_social_cliente: 'Nombre',
-    ruc_cliente: '12345',
-  };
-
   public clienteEditarForm: any;
   public clienteEditarID: any;
 
@@ -34,11 +28,11 @@ export class ClienteComponent implements OnInit {
   ngOnInit(): void {
 
     this.clienteForm = new FormGroup({
-      razon: new FormControl(this.clienteNuevo.razon_social_cliente, [
+      razon: new FormControl("", [
         Validators.required,
         Validators.minLength(4)
       ]),
-      ruc: new FormControl(this.clienteNuevo.ruc_cliente, [
+      ruc: new FormControl("", [
         Validators.required,
         Validators.minLength(4)
       ])

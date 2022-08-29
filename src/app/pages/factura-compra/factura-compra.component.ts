@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
@@ -32,6 +33,9 @@ export class FacturaCompraComponent implements OnInit {
   public iva5 = 0;
   public exento = 0;
 
+  // El formulario del registro
+  public facturaForm: any;
+
   constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -53,12 +57,35 @@ export class FacturaCompraComponent implements OnInit {
         //console.log(this.proveedores);
       }))
       .subscribe()
+
+    // Se crea el FormGroup
+    this.facturaForm = new FormGroup({
+      proveedor: new FormControl("", [
+        Validators.required
+      ]),
+      date: new FormControl("", [
+        Validators.required
+      ]),
+      nro: new FormControl("", [
+        Validators.required,
+        Validators.minLength(15)
+      ]),
+      condicion: new FormControl("", [
+        Validators.required
+      ])
+    });
   }
 
+  // Validaciones para Add factura ---> formControlName // Para mostrar mensajes de alerta
+  get proveedor_getter() { return this.facturaForm.get('proveedor'); }
+  get date_getter() { return this.facturaForm.get('date'); }
+  get nro_getter() { return this.facturaForm.get('nro'); }
+  get condicion_getter() { return this.facturaForm.get('condicion'); }
+
   // Al seleccionar el proveedor se guarda el ID en una variable para enviar a la base de datos
-  onChangeProveedor(id: any) {
-    this.proveedorId = parseInt(id);
-    //console.log(this.proveedorId);
+  onChangeProveedor(e: any) {
+    this.proveedorId = parseInt(e);
+    console.log(this.proveedor_getter);
   }
 
   // Al escribir el numero de factura
@@ -71,9 +98,9 @@ export class FacturaCompraComponent implements OnInit {
   }
 
   // Al seleccionar la condicion
-  onChangeCondicion(value: any) {
-    this.condicion = value;
-    console.log(this.condicion);
+  onChangeCondicion(e: any) {
+    this.condicion = e;
+    //console.log(this.condicion);
   }
 
   // Se calcula el IVA 10%
@@ -110,8 +137,6 @@ export class FacturaCompraComponent implements OnInit {
 
     //Datos para el detalle
     const descripcion = (document.getElementById("descripcion") as HTMLInputElement).value;
-    //const cantidad = (document.getElementById("cantidad") as HTMLInputElement).value;
-    //const precio = (document.getElementById("precio") as HTMLInputElement).value;
 
     // Objeto cabecera
     const cabeceraCompra = {
@@ -153,6 +178,8 @@ export class FacturaCompraComponent implements OnInit {
             }, error => {
               console.log('Si hay error en el post: ', error);
             });
+            // Se resetea el formulario de factura
+            this.facturaForm.reset();
         } else {
           console.log('result post: ', result);
           this.toastr.warning(result);
