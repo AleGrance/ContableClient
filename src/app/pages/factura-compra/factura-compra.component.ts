@@ -188,19 +188,4 @@ export class FacturaCompraComponent implements OnInit {
         console.log('Si hay error en el post: ', error);
       })
   }
-
-  resetForm() {
-    (document.getElementById("proveedor") as HTMLInputElement).value = "";
-    (document.getElementById("fecha") as HTMLInputElement).value = "";
-    (document.getElementById("nro") as HTMLInputElement).value = "";
-    // Condicion no se puede
-    (document.getElementById("descripcion") as HTMLInputElement).value = "";
-    this.totalComprobante = 0;
-    this.totalIva = 0;
-    this.gravado10 = 0;
-    this.iva10 = 0;
-    this.gravado5 = 0;
-    this.iva5 = 0;
-    this.exento = 0;
-  }
 }

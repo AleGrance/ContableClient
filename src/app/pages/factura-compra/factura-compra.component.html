@@ -98,15 +98,15 @@
                                             <tr>
                                                 <td><input type="text" id="descripcion" class="form-control" />
                                                 </td>
-                                                <td><input type="number" id="gravado_10" class="form-control"
-                                                        (change)="onChange10()" /></td>
+                                                <td><input type="number" id="gravado_10" value="{{gravado10}}" class="form-control"
+                                                        (keyup)="onChange10()" /></td>
                                                 <td><input type="number" id="iva_10" value="{{iva10}}"
                                                         class="form-control" disabled /></td>
-                                                <td><input type="number" id="gravado_5" class="form-control"
-                                                        (change)="onChange5()" /></td>
+                                                <td><input type="number" id="gravado_5" value="{{gravado5}}"class="form-control"
+                                                        (keyup)="onChange5()" /></td>
                                                 <td><input type="number" id="iva_5" value="{{iva5}}"
                                                         class="form-control" disabled /></td>
-                                                <td><input type="number" id="exento" (change)="onChangeExento()"
+                                                <td><input type="number" id="exento" (keyup)="onChangeExento()"
                                                         value="{{exento}}" class="form-control" /></td>
                                             </tr>
                                         </tbody>
