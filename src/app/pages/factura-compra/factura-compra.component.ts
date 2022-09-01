@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-factura-compra',
   templateUrl: './factura-compra.component.html',
@@ -88,14 +87,10 @@ export class FacturaCompraComponent implements OnInit {
   get nro_getter() { return this.facturaForm.get('nro'); }
   get condicion_getter() { return this.facturaForm.get('condicion'); }
   get descripcion_getter() { return this.facturaForm.get('descripcion'); }
-  get gravado10_getter() { return this.facturaForm.get('gravado10'); }
-  get gravado5_getter() { return this.facturaForm.get('gravado5'); }
-  get exento_getter() { return this.facturaForm.get('exento'); }
 
   // Al seleccionar el proveedor se guarda el ID en una variable para enviar a la base de datos
   onChangeProveedor(e: any) {
     this.proveedorId = parseInt(e);
-    console.log(this.facturaForm);
   }
 
   // Al escribir el numero de factura
@@ -140,13 +135,10 @@ export class FacturaCompraComponent implements OnInit {
 
   // Guardar los cambios
   grabar() {
-    console.log(this.gravado10);
-
     if (this.gravado10 <= 0 && this.gravado5 <= 0 && this.exento <= 0) {
       this.toastr.error('Error en el total, no puede ser 0');
     }
     else {
-
       // Datos para la cabecera
       const nrofactura = (document.getElementById("nro") as HTMLInputElement).value;
       const fecha = (document.getElementById("fecha") as HTMLInputElement).value;

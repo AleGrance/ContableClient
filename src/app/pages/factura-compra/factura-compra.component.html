@@ -82,7 +82,7 @@
                                 </div>
                                 <!--Detalles-->
                                 <div class="row border">
-                                    <table class="table">
+                                    <table class="table table-striped">
                                         <thead>
                                             <tr>
                                                 <th style="width:25%">Descripción</th>
@@ -107,8 +107,7 @@
                                         </tr>-->
 
                                             <tr>
-                                                <td>
-                                                    <input type="text" id="descripcion" class="form-control"
+                                                <td><input type="text" id="descripcion" class="form-control"
                                                         formControlName="descripcion" />
                                                 </td>
                                                 <td><input type="number" min="0" id="gravado_10" value="{{gravado10}}"
@@ -119,8 +118,8 @@
                                                         class="form-control" (keyup)="onChange5()" /></td>
                                                 <td><input type="number" id="iva_5" value="{{iva5}}"
                                                         class="form-control" readonly /></td>
-                                                <td><input type="number" min="0" id="exento" (keyup)="onChangeExento()"
-                                                        value="{{exento}}" class="form-control" /></td>
+                                                <td><input type="number" min="0" id="exento" value="{{exento}}"
+                                                        class="form-control" (keyup)="onChangeExento()" /></td>
                                             </tr>
                                         </tbody>
                                     </table>
