@@ -14,6 +14,9 @@ import { ReporteComponent } from './pages/reporte/reporte.component';
 
 const routes: Routes = [
   {
+    path: '', component: DashboardComponent,
+  },
+  {
     path: 'contribuyente_component', component: ContribuyenteComponent
   },
   {
