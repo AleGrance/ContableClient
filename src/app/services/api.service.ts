@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
   // Local
-  url: string = 'http://localhost:3000';
+  //url: string = 'http://localhost:3000';
   // AWS server
   //url: string = 'http://54.163.242.1:3000';
-  //url: string = 'https://contableag.site';
+  url: string = 'https://contableag.site';
 
   // Free APIs
   //url: string = 'https://pokeapi.co/api/v2';

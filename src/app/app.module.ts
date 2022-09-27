@@ -19,6 +19,7 @@ import { FacturaVentaComponent } from './pages/factura-venta/factura-venta.compo
 import { ReporteCompraComponent } from './pages/reporte-compra/reporte-compra.component';
 import { ReporteVentaComponent } from './pages/reporte-venta/reporte-venta.component';
 import { CommonModule } from '@angular/common';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CommonModule } from '@angular/common';
     DetalleClienteComponent,
     FacturaVentaComponent,
     ReporteCompraComponent,
-    ReporteVentaComponent
+    ReporteVentaComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

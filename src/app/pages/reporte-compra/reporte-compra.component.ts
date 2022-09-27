@@ -43,7 +43,7 @@ export class ReporteCompraComponent implements OnInit {
     this.api.get('cabecera_compra/contribuyente/' + this.contribuyenteId)
       .pipe(map(data => {
         this.cabecerasCompra = data;
-        console.log("Registros de compras: ", this.cabecerasCompra);
+        console.log("Registros de compras: ", this.cabecerasCompra.length);
       }))
       .subscribe()
   }
