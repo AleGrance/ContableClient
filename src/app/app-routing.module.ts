@@ -7,6 +7,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DetalleClienteComponent } from './pages/detalle-cliente/detalle-cliente.component';
 import { FacturaCompraComponent } from './pages/factura-compra/factura-compra.component';
 import { FacturaVentaComponent } from './pages/factura-venta/factura-venta.component';
+import { LoginComponent } from './pages/login/login.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ReporteCompraComponent } from './pages/reporte-compra/reporte-compra.component';
 import { ReporteVentaComponent } from './pages/reporte-venta/reporte-venta.component';
@@ -14,7 +15,9 @@ import { ReporteComponent } from './pages/reporte/reporte.component';
 
 const routes: Routes = [
   {
-    path: '', component: DashboardComponent,
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
   },
   {
     path: 'contribuyente_component', component: ContribuyenteComponent
@@ -48,6 +51,9 @@ const routes: Routes = [
   },
   {
     path: 'dashboard', component: DashboardComponent
+  },
+  {
+    path: 'login', component: LoginComponent
   },
 
   // El modulo cuentas_module se importa pero no se usa. Fue para probar el lazy loading pero no se logro configurar el html
