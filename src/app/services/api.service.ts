@@ -6,16 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
   // Local
-  url: string = 'http://localhost:3000';
+  //url: string = 'http://localhost:3000';
   // AWS server
-  //url: string = 'http://54.163.242.1:3000';
-  //url: string = 'https://contableag.site';
-
-  // Free APIs
-  //url: string = 'https://pokeapi.co/api/v2';
-  //url: string = 'https://swapi.dev/api'; // desde el client pasar: people, planets, vehicles, starships
-  //url: string = 'https://parallelum.com.br/fipe/api/v1'; // desde el client cambiar "carros" para "motos" ou "caminhoes"
-  //url: string = 'https://inshorts.deta.dev/news?category'; // Usar = en lugar de / ... desde el client completar con tecnology o world
+  url: string = 'https://contableag.site';
 
   constructor(public http: HttpClient) { }
 
