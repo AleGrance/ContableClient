@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'client';
 
-  constructor(public api: ApiService, private authService: AuthService) {
+  constructor(public api: ApiService, public authService: AuthService) {
 
   }
 

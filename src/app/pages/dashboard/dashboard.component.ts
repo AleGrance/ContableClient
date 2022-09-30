@@ -27,6 +27,7 @@ import {
 } from 'chart.js';
 import { ApiService } from 'src/app/services/api.service';
 import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 Chart.register(
   ArcElement,
@@ -61,7 +62,7 @@ Chart.register(
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public api: ApiService) { }
+  constructor(public api: ApiService, private authService: AuthService) { }
 
   public contribuyentes: any;
   public clientes: any;
@@ -79,6 +80,9 @@ export class DashboardComponent implements OnInit {
       .subscribe()
 
       //this.createChart();
+
+      // Checks if user is logged in
+      console.log(this.authService.isLoggedIn());
   }
 
   getCliente() {

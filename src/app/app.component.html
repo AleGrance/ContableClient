@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="authService.isLoggedIn()">
   <a class="navbar-brand" routerLink="/dashboard">Contable</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,8 +18,6 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/login" (click)="logout()">Salir</a>
       </li>
-      
-      
     </ul>
   </div>
 </nav>
