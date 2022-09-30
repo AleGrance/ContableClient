@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
       //this.createChart();
 
       // Checks if user is logged in
-      console.log(this.authService.getToken());
+      //console.log(this.authService.getToken());
   }
 
   getCliente() {
