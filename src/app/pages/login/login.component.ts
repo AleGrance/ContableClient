@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
     user_password: "",
   };
 
+  public mostrarOcultarText = "Mostrar contraseña";
+
   constructor(private authService: AuthService) { }
 
 
@@ -24,6 +26,17 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.user)
+  }
+
+  showPassword() {
+    const typePass = ((<HTMLInputElement>document.getElementById("password")).type);
+
+    if (typePass === "text") {
+      ((<HTMLInputElement>document.getElementById("password")).type) = "password";
+    } else if (typePass === "password") {
+      ((<HTMLInputElement>document.getElementById("password")).type) = "text";
+    }
+
   }
 
 }
