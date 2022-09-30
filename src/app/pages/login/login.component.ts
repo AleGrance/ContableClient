@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,16 +14,20 @@ export class LoginComponent implements OnInit {
     user_password: "",
   };
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
 
   ngOnInit(): void {
   }
 
   login(){
+    let token: any;
     this.apiService.post('auth', this.user)
       .subscribe(data => {
         console.log(data);
+        token = data;
+        localStorage.setItem("token", token.token);
+        this.router.navigate(['/dashboard']);
       }, error => {
         console.log(error.error);
       })
