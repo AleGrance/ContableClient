@@ -20,6 +20,7 @@ import { ReporteCompraComponent } from './pages/reporte-compra/reporte-compra.co
 import { ReporteVentaComponent } from './pages/reporte-venta/reporte-venta.component';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AuthGuard } from './auth.guard';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -51,7 +52,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     ToastrModule.forRoot(), // ToastrModule added
 
   ],
-  providers: [ClienteComponent],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

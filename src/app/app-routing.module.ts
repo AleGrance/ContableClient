@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { ContribuyenteComponent } from './pages/contribuyente/contribuyente.component';
 import { CuentaComponent } from './pages/cuenta/cuenta.component';
@@ -20,37 +21,48 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'contribuyente_component', component: ContribuyenteComponent
+    path: 'contribuyente_component', component: ContribuyenteComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'cliente_component', component: ClienteComponent
+    path: 'cliente_component', component: ClienteComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'proveedor_component', component: ProveedorComponent
+    path: 'proveedor_component', component: ProveedorComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'reporte/:id_contribuyente', component: ReporteComponent
+    path: 'reporte/:id_contribuyente', component: ReporteComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'cuenta_component', component: CuentaComponent
+    path: 'cuenta_component', component: CuentaComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'factura-compra/:id_contribuyente', component: FacturaCompraComponent
+    path: 'factura-compra/:id_contribuyente', component: FacturaCompraComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'factura-venta/:id_contribuyente', component: FacturaVentaComponent
+    path: 'factura-venta/:id_contribuyente', component: FacturaVentaComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'detalle-cliente/:id_cliente', component: DetalleClienteComponent
+    path: 'detalle-cliente/:id_cliente', component: DetalleClienteComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'reporte-compra/:id_contribuyente', component: ReporteCompraComponent
+    path: 'reporte-compra/:id_contribuyente', component: ReporteCompraComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'reporte-venta/:id_contribuyente', component: ReporteVentaComponent
+    path: 'reporte-venta/:id_contribuyente', component: ReporteVentaComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'dashboard', component: DashboardComponent
+    path: 'dashboard', component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login', component: LoginComponent
