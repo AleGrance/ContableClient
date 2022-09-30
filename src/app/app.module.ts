@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'; //se importa
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; //se importa
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,7 @@ import { ReporteVentaComponent } from './pages/reporte-venta/reporte-venta.compo
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -53,7 +54,12 @@ import { AuthGuard } from './auth.guard';
 
   ],
   providers: [
-    AuthGuard
+    AuthGuard, {
+      // Para agregar una cabecera extra a las peticiones
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

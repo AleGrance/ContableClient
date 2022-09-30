@@ -27,4 +27,9 @@ export class AuthService {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
+
+  // Used by tokenInterceptorService
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }

@@ -74,7 +74,6 @@ export class DashboardComponent implements OnInit {
       .pipe(map(data => {
         this.contribuyentes = data;
         this.fullData.push(this.contribuyentes.length);
-        console.log("Contri", this.fullData);
         this.getCliente();
       }))
       .subscribe()
@@ -82,7 +81,7 @@ export class DashboardComponent implements OnInit {
       //this.createChart();
 
       // Checks if user is logged in
-      console.log(this.authService.isLoggedIn());
+      console.log(this.authService.getToken());
   }
 
   getCliente() {
@@ -90,7 +89,6 @@ export class DashboardComponent implements OnInit {
       .pipe(map(data => {
         this.clientes = data;
         this.fullData.push(this.clientes.length);
-        console.log("Cli", this.fullData);
         this.getProveedor();
       }))
       .subscribe()
@@ -101,7 +99,6 @@ export class DashboardComponent implements OnInit {
       .pipe(map(data => {
         this.proveedores = data;
         this.fullData.push(this.proveedores.length);
-        console.log("Prove", this.fullData);
         this.createChart();
       }))
       .subscribe()
