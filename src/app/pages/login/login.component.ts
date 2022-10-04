@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     //console.log(this.authService.isLoggedIn());
+    // Para evitar mostrar el navbar al retroceder hacia el login sin hacer clic en Salir
     this.authService.logout();
   }
 
