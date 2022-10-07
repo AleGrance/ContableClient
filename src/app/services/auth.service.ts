@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private toastr: ToastrService) { }
 
   login(user: any) {
     let token: any;
@@ -16,8 +17,10 @@ export class AuthService {
         token = data;
         localStorage.setItem("token", token.token);
         this.router.navigate(['/dashboard']);
+        this.toastr.success('Acceso correcto');
       }, error => {
         console.log(error.error);
+        this.toastr.error(error.error.message);
       })
   }
 
