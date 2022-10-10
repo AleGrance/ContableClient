@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 //import * as XLSX from 'xlsx';
 //import * as FileSaver from 'file-saver';
-import {ExcelService} from '../../services/excel.service';
+import { ExcelService } from '../../services/excel.service';
 
 
 @Component({
@@ -18,6 +18,8 @@ export class ReporteCompraComponent implements OnInit {
   public contribuyenteEncontrado: any;
   // Se almacena el ID del contribuyente para enviar al grabar el registro
   public contribuyenteId: any;
+  // Para almacenar la lista de todos los proveedores
+  public proveedores: any;
 
   // Listado de las cabecera de compra segun el contribuyente seleccionado
   public cabecerasCompra: any;
@@ -46,10 +48,16 @@ export class ReporteCompraComponent implements OnInit {
         console.log("Registros de compras: ", this.cabecerasCompra.length);
       }))
       .subscribe()
+
+    this.api.get('proveedor')
+      .pipe(map(data => {
+        this.proveedores = data;
+      }))
+      .subscribe()
   }
 
   // Export to excel
   exportAsXLSX(): void {
-   this.excelService.exportAsExcelFile(this.cabecerasCompra, 'Reporte de compras - ' + this.contribuyenteEncontrado.razon_social_contribuyente, this.contribuyenteEncontrado);
+    this.excelService.exportAsExcelFile(this.cabecerasCompra, 'Reporte de compras - ' + this.contribuyenteEncontrado.razon_social_contribuyente, this.contribuyenteEncontrado);
   }
 }
