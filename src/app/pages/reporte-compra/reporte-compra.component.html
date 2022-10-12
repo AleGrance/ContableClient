@@ -42,8 +42,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of cabecerasCompra">
-                <th scope="row">{{contribuyenteEncontrado.ruc_contribuyente}}</th>
-                <td>{{contribuyenteEncontrado.razon_social_contribuyente}}</td>
+                <th scope="row">{{item.Contribuyente.ruc_contribuyente}}</th>
+                <td>{{item.Contribuyente.razon_social_contribuyente}}</td>
                 <td>{{item.Proveedor.ruc_proveedor}}</td>
                 <td>{{item.Proveedor.nom_proveedor}}</td>
                 <td>{{item.fecha_factura_compra | date: 'dd-MM-YYYY'}}</td>

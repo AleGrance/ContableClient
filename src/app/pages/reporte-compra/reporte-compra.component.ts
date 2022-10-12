@@ -38,14 +38,6 @@ export class ReporteCompraComponent implements OnInit {
     // Primero se obtiene el ID enviado a travez de la ruta
     const routeParams = this.route.snapshot.paramMap;
     this.contribuyenteId = Number(routeParams.get('id_contribuyente')); //Este parametro se configura en app-routes
-    // Luego se busca el registro en la base de dato a travez del API para obtener los datos del contribuyente y mostrar en pantalla
-    this.api.get('contribuyente/' + this.contribuyenteId)
-      .pipe(map(data => {
-        this.contribuyenteEncontrado = data;
-        //console.log("El contribuyente es: ", this.contribuyenteEncontrado);
-      }))
-      .subscribe()
-
     // Consulta las cabeceras segun el id del contribuyente
     this.api.get('cabecera_compra/contribuyente/' + this.contribuyenteId)
       .pipe(map(data => {
