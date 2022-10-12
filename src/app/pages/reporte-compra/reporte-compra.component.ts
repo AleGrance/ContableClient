@@ -20,12 +20,17 @@ export class ReporteCompraComponent implements OnInit {
   public contribuyenteId: any;
   // Para almacenar la lista de todos los proveedores
   public proveedores: any;
-
   // Listado de las cabecera de compra segun el contribuyente seleccionado
   public cabecerasCompra: any;
-
   // Excel file
   public fileName = '';
+  // Filtro
+  public filtros = {
+    id_proveedor: 1,
+    condicion: "Contado",
+    fecha_inicio: "2022-02-11",
+    fecha_fin: "2022-02-11"
+  };
 
   constructor(public api: ApiService, private route: ActivatedRoute, private toastr: ToastrService, private excelService: ExcelService) { }
 
@@ -48,7 +53,7 @@ export class ReporteCompraComponent implements OnInit {
         console.log("Registros de compras: ", this.cabecerasCompra.length);
       }))
       .subscribe()
-
+    // Trae todos los proveedores registrados
     this.api.get('proveedor')
       .pipe(map(data => {
         this.proveedores = data;
@@ -59,5 +64,16 @@ export class ReporteCompraComponent implements OnInit {
   // Export to excel
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.cabecerasCompra, 'Reporte de compras - ' + this.contribuyenteEncontrado.razon_social_contribuyente, this.contribuyenteEncontrado);
+  }
+
+  // Ejecuta el fltro
+  filtro(event: any) {
+    //console.log(event);
+
+    this.api.post('cabecera_compra/contribuyente/' + this.contribuyenteId, this.filtros)
+      .pipe(map(data => {
+        this.cabecerasCompra = data;
+      }))
+      .subscribe()
   }
 }
