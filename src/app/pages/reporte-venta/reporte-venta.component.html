@@ -1,3 +1,32 @@
+<!--Filtros de la busqueda-->
+<div class="row" style="margin: 8px">
+    <div class="col-md-5">
+        <label class="col-form-label-sm">Cliente</label>
+        <ng-select [multiple]="true" (add)="addItem($event)" (remove)="deleteItem($event)">
+            <ng-option *ngFor="let item of clientes" [value]="item.id_cliente">{{item.razon_social_cliente}}</ng-option>
+        </ng-select>
+    </div>
+    <div class="col-md-2">
+        <label class="col-form-label-sm">Fecha desde</label>
+        <input id="fecha_inicio" type="date" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <label class="col-form-label-sm">Fecha hasta</label>
+        <input id="fecha_fin" type="date" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <label class="col-form-label-sm">Condición</label>
+        <ng-select (change)="onChangeCondicion($event)">
+            <ng-option value="Contado">Contado</ng-option>
+            <ng-option value="Crédito">Crédito</ng-option>
+        </ng-select>
+    </div>
+    <div style="padding-top: 37px;">
+        <button type="button" class="btn btn-outline-success" (click)="buscar()">Buscar</button>
+    </div>
+</div>
+
+<!--Resultado de la busqueda-->
 <table class="table table-sm">
     <thead class="thead-dark">
         <tr>

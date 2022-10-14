@@ -3,10 +3,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-//import * as XLSX from 'xlsx';
-//import * as FileSaver from 'file-saver';
 import { ExcelService } from '../../services/excel.service';
-
 
 @Component({
   selector: 'app-reporte-compra',
@@ -14,8 +11,6 @@ import { ExcelService } from '../../services/excel.service';
   styleUrls: ['./reporte-compra.component.css']
 })
 export class ReporteCompraComponent implements OnInit {
-  // El contribuyente encontrado mediante el id que le pasa contribuyente_component, es para obtener los datos y mostrar en pantalla
-  public contribuyenteEncontrado: any;
   // Se almacena el ID del contribuyente para enviar al grabar el registro
   public contribuyenteId: any;
   // Para almacenar la lista de todos los proveedores
@@ -80,9 +75,6 @@ export class ReporteCompraComponent implements OnInit {
     this.filtros.fecha_inicio = ((<HTMLInputElement>document.getElementById("fecha_inicio")).value);
     this.filtros.fecha_fin = ((<HTMLInputElement>document.getElementById("fecha_fin")).value);
 
-
-    //console.log(this.filtros);
-
     this.api.post('cabecera_compra/contribuyente/' + this.contribuyenteId, this.filtros)
       .pipe(map(data => {
         this.cabecerasCompra = data;
@@ -94,6 +86,4 @@ export class ReporteCompraComponent implements OnInit {
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.cabecerasCompra, 'Reporte de compras');
   }
-
-
 }
