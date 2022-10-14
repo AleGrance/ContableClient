@@ -24,9 +24,13 @@ export class ReporteCompraComponent implements OnInit {
   public cabecerasCompra: any;
   // Excel file
   public fileName = '';
+
   // Filtro
+  // Ops es el array de los proveedores seleccionados por los cuales hay que filtrar
+  public ops: number[] = [];
+  // El objeto completo del filtro para enviar al servidor
   public filtros = {
-    id_proveedor: 1,
+    id_proveedor: this.ops,
     condicion: "Contado",
     fecha_inicio: "2022-02-11",
     fecha_fin: "2022-02-11"
@@ -42,7 +46,7 @@ export class ReporteCompraComponent implements OnInit {
     this.api.get('cabecera_compra/contribuyente/' + this.contribuyenteId)
       .pipe(map(data => {
         this.cabecerasCompra = data;
-        console.log("Registros de compras: ", this.cabecerasCompra.length);
+        //console.log("Registros de compras: ", this.cabecerasCompra.length);
       }))
       .subscribe()
     // Trae todos los proveedores registrados
@@ -53,14 +57,31 @@ export class ReporteCompraComponent implements OnInit {
       .subscribe()
   }
 
-  // Export to excel
-  exportAsXLSX(): void {
-    this.excelService.exportAsExcelFile(this.cabecerasCompra, 'Reporte de compras - ' + this.contribuyenteEncontrado.razon_social_contribuyente, this.contribuyenteEncontrado);
+  // Agrega valores al array de proveedores a buscar con el filtro
+  addItem(event: number) {
+    this.ops.push(event);
+  }
+  // Elimina valores del array de proveedores a buscar con el filtro
+  deleteItem(event: any) {
+    for (let item of this.ops) {
+      if (item === event.value) {
+        this.ops.splice(this.ops.indexOf(item), 1);
+      }
+    }
   }
 
-  // Ejecuta el fltro
-  filtro(event: any) {
-    //console.log(event);
+  // Al seleccionar la condicion se modifica el atributo condicion del array del filtro a ser enviado al server
+  onChangeCondicion(event: any) {
+    this.filtros.condicion = event;
+  }
+
+  // Funcion del boton buscar
+  buscar() {
+    this.filtros.fecha_inicio = ((<HTMLInputElement>document.getElementById("fecha_inicio")).value);
+    this.filtros.fecha_fin = ((<HTMLInputElement>document.getElementById("fecha_fin")).value);
+
+
+    //console.log(this.filtros);
 
     this.api.post('cabecera_compra/contribuyente/' + this.contribuyenteId, this.filtros)
       .pipe(map(data => {
@@ -68,4 +89,11 @@ export class ReporteCompraComponent implements OnInit {
       }))
       .subscribe()
   }
+
+  // Export to excel
+  exportAsXLSX(): void {
+    this.excelService.exportAsExcelFile(this.cabecerasCompra, 'Reporte de compras - ' + this.contribuyenteEncontrado.razon_social_contribuyente, this.contribuyenteEncontrado);
+  }
+
+
 }
