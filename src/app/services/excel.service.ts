@@ -15,14 +15,14 @@ export class ExcelService {
 
   mappedJson: any;
 
-  public exportAsExcelFile(json: any[], excelFileName: string, contribuyenteData: any): void {
+  public exportAsExcelFile(json: any[], excelFileName: string): void {
     /****************
     * Let's make some changes in our data
     */
     this.mappedJson = json.map(item => {
       return {
-        "RUC del informante": contribuyenteData.ruc_contribuyente,
-        "Razon Social del informante": contribuyenteData.razon_social_contribuyente,
+        "RUC del informante": item.Contribuyente.ruc_contribuyente,
+        "Razon Social del informante": item.Contribuyente.razon_social_contribuyente,
         "RUC del informado": item.Proveedor.ruc_proveedor,
         "Nombre del proveedor": item.Proveedor.nom_proveedor,
         "Fecha de emisión": item.fecha_factura_compra ? moments(item.fecha_factura_compra).format('DD-MM-YYYY') : 'N/A',
