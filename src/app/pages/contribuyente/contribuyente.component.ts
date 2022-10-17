@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-contribuyente',
@@ -10,7 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./contribuyente.component.css']
 })
 export class ContribuyenteComponent implements OnInit {
-
+  // Icons
+  faPlus = faPlus;
   // El listado de contribuyentes
   public contribuyentes: any;
   public contribuyenteForm: any;

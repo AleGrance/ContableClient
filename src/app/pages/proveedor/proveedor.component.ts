@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-proveedor',
@@ -10,7 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./proveedor.component.css']
 })
 export class ProveedorComponent implements OnInit {
-
+  // Icons
+  faPlus = faPlus;
   // El listado de proveedores
   public proveedores: any;
   public proveedorForm: any;

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-cliente',
@@ -10,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
+  // Icons
+  faPlus = faPlus;
   // El listado de clientes
   public clientes: any;
   public clienteForm: any;
@@ -122,7 +125,7 @@ export class ClienteComponent implements OnInit {
 
   // Se ejecuta al seleccionar la opcion factura compra
   clienteSeleccionado(value: any) {
-    
+
   }
 
   // Se llama al modal para editar el cliente

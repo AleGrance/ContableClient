@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-//import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     BrowserAnimationsModule,
     AppRoutingModule,
     CommonModule,
-    //FontAwesomeModule,
+    FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,   //se usa la version 7 que es compatible con el angular 12
