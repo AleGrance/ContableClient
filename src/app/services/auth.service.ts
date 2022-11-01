@@ -18,6 +18,8 @@ export class AuthService {
         localStorage.setItem("token", token.token);
         this.router.navigate(['/dashboard']);
         this.toastr.success('Acceso correcto');
+        console.log(user);
+        localStorage.setItem("user", user.user_name);
       }, error => {
         console.log(error.error);
         this.toastr.error(error.error.message);
@@ -28,6 +30,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
 
